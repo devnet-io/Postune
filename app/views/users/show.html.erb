@@ -1,0 +1,28 @@
+<table>
+<tbody>
+	<tr>
+		<th>Category</th>
+		<th>Value</th>
+	</tr>
+	<tr>
+		<td>Username</td>
+		<td><%= @user.name %></td>
+	</tr>
+	<tr>
+		<td>Email</td>
+		<td><%= @user.email %></td>
+	</tr>
+	<tr>
+		<td>Password</td>
+		<td><%= @user.password %></td>
+	</tr>
+	<tr>
+		<td>Created</td>
+		<td><%= @user.created_at %></td>
+	</tr>
+	<tr>
+		<td>Group</td>
+		<td><%= @user.group.name %></td>
+	</tr>
+</tbody>
+</table>
