@@ -3,10 +3,17 @@ class User < ActiveRecord::Base
 	attr_accessor :unencrypted_password
 	attr_accessible :name, :email, :unencrypted_password, :unencrypted_password_confirmation
 	
+	# Every user belongs to a group
 	belongs_to :group
 	
+	# Every user has playlists and songs
+	has_many :playlist
+	has_many :song
+	
+	# Email Regex for validation
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	
+	# Do some validation
 	validates :name,  					:presence => true,
 										:length => { :within => 3..50 },
 										:uniqueness => { :case_sensitive => false }
@@ -16,7 +23,8 @@ class User < ActiveRecord::Base
 	validates :unencrypted_password,	:presence => true,
 										:confirmation => true,
 										:length => { :within => 6..50 }
-							
+	
+	# Run the encryption method and fill out the other fields with default values						
 	before_save :init
 	
 	def self.authenticate(username, submitted_password)

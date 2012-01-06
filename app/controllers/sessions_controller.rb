@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 	def new
+		@title = "Login"
+		@user = User.new
 	end
 	
 	def destroy
@@ -12,8 +14,9 @@ class SessionsController < ApplicationController
 			flash.now[:error] = "Invalid Password or Username"
 			@title = "Register"
 			@user = User.new
-			render "users/new"
+			render "new"
 		else
+			# User a helper method to sign the user in
 			# sign_in user
 			redirect_to user
 		end

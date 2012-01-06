@@ -1,5 +1,5 @@
 Postune::Application.routes.draw do
-	root :to => "users#new" 
+#	root :to => "users#new" 
 
 	resources :users
 	resources :sessions, :only => [ :new, :create, :destroy ]	
