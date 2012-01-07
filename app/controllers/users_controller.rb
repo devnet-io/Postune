@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
 	
 	def show
-		@title = User.find(params[:id]).name
-		@user = User.find(params[:id])
+		inf = User.find(params[:id])
+		@title = inf.name
+		@user = inf
 	end
 
 

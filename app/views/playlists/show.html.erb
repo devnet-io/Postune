@@ -1,0 +1,26 @@
+<h1><%= @playlist.name %></h1>
+<table>
+	<tbody>
+		<tr>
+			<th>Position</th>
+			<th>User</th>
+			<th>Title</th>
+			<th>Artist</th>
+			<th>Album</th>
+			<th>URL</th>
+			<th>Artwork</th>
+		</tr>
+		<% @playlist.playlist_song.each do |p_song| %>
+		<tr>
+			<td><%= p_song.position %></td>
+			<td><%= p_song.song.user.name %></td>
+			<td><%= p_song.song.title %></td>
+			<td><%= p_song.song.artist %></td>
+			<td><%= p_song.song.album %></td>
+			<td><%= p_song.song.url %></td>
+			<td><%= p_song.song.artwork %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+

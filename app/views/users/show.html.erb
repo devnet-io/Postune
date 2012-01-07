@@ -24,5 +24,13 @@
 		<td>Group</td>
 		<td><%= @user.group.name %></td>
 	</tr>
+	<tr>
+		<td>Playlists</td>
+		<td>
+			<% @user.playlist.each do |p| %>
+				<%= link_to p.name, user_playlist_path(@user, p.id) %> <br />
+			<% end %>
+		</td>
+	</tr>
 </tbody>
 </table>

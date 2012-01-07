@@ -1,0 +1,17 @@
+<h1>Your Playlists</h1>
+<table>
+	<tbody>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>User</th>
+		</tr>
+		<% @user.playlist.each do |p| %>
+		<tr>
+			<td><%= p.id %></td>
+			<td><%= link_to p.name, user_playlist_path(@user, p.id) %></td>
+			<td><%= @user.name %></td>
+		</tr>
+		<% end %>	
+	</tbody>
+</table>
