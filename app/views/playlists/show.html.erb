@@ -3,6 +3,7 @@
 	<tbody>
 		<tr>
 			<th>Position</th>
+			<th>ID</th> 
 			<th>User</th>
 			<th>Title</th>
 			<th>Artist</th>
@@ -10,11 +11,12 @@
 			<th>URL</th>
 			<th>Artwork</th>
 		</tr>
-		<% @playlist.playlist_song.each do |p_song| %>
+		<% @playlist_songs.each do |p_song| %>
 		<tr>
 			<td><%= p_song.position %></td>
+			<td><%= p_song.id %></td>
 			<td><%= p_song.song.user.name %></td>
-			<td><%= p_song.song.title %></td>
+			<td><%= link_to p_song.song.title, user_playlist_playlist_song_path(@playlist.user_id, @playlist.id, p_song.id) %></td>
 			<td><%= p_song.song.artist %></td>
 			<td><%= p_song.song.album %></td>
 			<td><%= p_song.song.url %></td>
@@ -23,4 +25,3 @@
 		<% end %>
 	</tbody>
 </table>
-

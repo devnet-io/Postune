@@ -13,6 +13,7 @@ class PlaylistsController < ApplicationController
 		inf = User.find(params[:user_id]).playlist.find(params[:id])
 		@title = inf.name
 		@playlist = inf
+		@playlist_songs = inf.playlist_song.order("position")
 	end
 	
 	def create

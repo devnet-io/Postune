@@ -1,0 +1,30 @@
+<table>
+	<tbody>
+		<tr>
+			<td><h2>Songs</h2></td>
+		</tr>
+		<tr>
+			<th>ID</th> 
+			<th>User</th>
+			<th>Title</th>
+			<th>Artist</th>
+			<th>Album</th>
+			<th>URL</th>
+			<th>Artwork</th>
+		</tr>
+		<% @songs.each do |s| %>
+		<tr>
+			<td><%= s.id %></td>
+			<td><%= link_to s.user.name, user_path(s.user_id) %></td>
+			<td><%= link_to s.title, song_path(s.id) %></td>
+			<td><%= s.artist %></td>
+			<td><%= s.album %></td>
+			<td><%= s.url %></td>
+			<td><%= s.artwork %></td>
+		</tr>
+		<% end %>
+		<tr>
+			<td>Songs: <%= @song_count %></td>
+		</tr>
+	</tbody>	
+</table>

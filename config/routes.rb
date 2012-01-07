@@ -1,8 +1,11 @@
 Postune::Application.routes.draw do
-#	root :to => "users#new" 
 
+#	root :to => "users#new" 
+	resources :songs
 	resources :users do
-		resources :playlists
+		resources :playlists do
+			resources :playlist_songs, :path => "song" 
+		end
 	end
 	
 	resources :sessions, :only => [ :new, :create, :destroy ]	

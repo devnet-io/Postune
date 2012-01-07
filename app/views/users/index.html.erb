@@ -1,20 +1,22 @@
-<div>
-	<strong>Number of Users</strong> <%= @count %>
-</div>
 <table>
-  <tr>
-	<th>ID</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Group</th>
-  </tr>
+<tbody>
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Group</th>
+	</tr>
 
-<% @users.each do |user| %>
-  <tr>
-	<td><%= user.id %></td>
-    <td><%= link_to user.name, user_path(user.id) %></td>
-    <td><%= user.email %></td>
-    <td><%= user.group.name %></td>
-  </tr>
-<% end %>
+	<% @users.each do |user| %>
+	<tr>
+		<td><%= user.id %></td>
+		<td><%= link_to user.name, user_path(user.id) %></td>
+		<td><%= user.email %></td>
+		<td><%= user.group.name %></td>
+	</tr>
+	<% end %>
+	<tr>
+		<td><strong>Number of Users</strong>: <%= @count %></td>
+	</tr>
+</tbody>
 </table>
