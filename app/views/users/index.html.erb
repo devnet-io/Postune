@@ -1,22 +1,27 @@
+<h1>Users</h1>
 <table>
-<tbody>
-	<tr>
-		<th>ID</th>
-		<th>Name</th>
-		<th>Email</th>
-		<th>Group</th>
-	</tr>
+	<tbody>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Group</th>
+		</tr>
 
-	<% @users.each do |user| %>
-	<tr>
-		<td><%= user.id %></td>
-		<td><%= link_to user.name, user_path(user.id) %></td>
-		<td><%= user.email %></td>
-		<td><%= user.group.name %></td>
-	</tr>
-	<% end %>
-	<tr>
-		<td><strong>Number of Users</strong>: <%= @count %></td>
-	</tr>
-</tbody>
+		<% @users.each do |user| %>
+		<tr>
+			<td><%= user.id %></td>
+			<td><%= link_to user.name, user_path(user.id) %></td>
+			<td><%= user.email %></td>
+			<td><%= user.group.name %></td>
+		</tr>
+		<% end %>
+	</tbody>
 </table>
+<div>
+	<strong>Number of Users</strong>: <%= @count %>
+</div>
+<div>
+	<strong>Actions</strong> | 
+	<%= link_to "Create a User", new_user_path %>
+</div>

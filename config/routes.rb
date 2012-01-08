@@ -1,8 +1,14 @@
 Postune::Application.routes.draw do
 
 #	root :to => "users#new" 
-	resources :songs
-	resources :users do
+
+	# ------------
+	# Admin Routes
+	# ------------
+	resources :songs, :path => "/admin/songs"
+	resources :admin, :only => [ :index ]
+	
+	resources :users, :path => "/admin/users" do 
 		resources :playlists do
 			resources :playlist_songs, :path => "song" 
 		end

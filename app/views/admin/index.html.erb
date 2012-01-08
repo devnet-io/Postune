@@ -1,0 +1,20 @@
+<h1>Admin</h1>
+<table>
+	<tbody>
+		<tr>
+			<th>Model</th>
+			<th>URL</th>
+			<th>Count</th>
+		</tr>
+		<tr>
+			<td>Users</td>
+			<td><%= link_to users_path, users_path %></td>
+			<td><%= @user_count %></td>
+		</tr>
+		<tr>
+			<td>Songs</td>
+			<td><%= link_to songs_path, songs_path %></td>
+			<td><%= @song_count %></td>
+		</tr>
+	</tbody>
+</table>

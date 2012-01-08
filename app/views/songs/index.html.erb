@@ -1,8 +1,6 @@
+<h1>Songs</h1>
 <table>
 	<tbody>
-		<tr>
-			<td><h2>Songs</h2></td>
-		</tr>
 		<tr>
 			<th>ID</th> 
 			<th>User</th>
@@ -23,8 +21,9 @@
 			<td><%= s.artwork %></td>
 		</tr>
 		<% end %>
-		<tr>
-			<td>Songs: <%= @song_count %></td>
-		</tr>
 	</tbody>	
 </table>
+<div>
+	<strong>Number of Songs</strong>: <%= @song_count %>
+</div>
+

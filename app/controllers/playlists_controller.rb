@@ -7,6 +7,7 @@ class PlaylistsController < ApplicationController
 	end
 
 	def new
+		@title = "New Playlist"
 	end
 	
 	def show
