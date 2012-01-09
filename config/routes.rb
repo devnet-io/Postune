@@ -2,9 +2,9 @@ Postune::Application.routes.draw do
 
 #	root :to => "users#new" 
 
-	# ------------
+	# -------------------
 	# Admin Routes
-	# ------------
+	# -------------------
 	resources :songs, :path => "/admin/songs"
 	resources :admin, :only => [ :index ]
 	
@@ -14,9 +14,16 @@ Postune::Application.routes.draw do
 		end
 	end
 	
+	# -------------------
+	# Session Routes
+	# -------------------
 	resources :sessions, :only => [ :new, :create, :destroy ]	
 	
 	match '/login', :to => "sessions#new"
 	match '/logout', :to => "sessions#destroy"
+	
+	# -------------------
+	# General User Routes
+	# -------------------
 end
  

@@ -1,3 +1,9 @@
+<div class="breadcrumbs">
+	<%= link_to "Admin", admin_index_path %> > 
+	<%= link_to "Users", users_path %> > <%= link_to @user.name, @user %> > 
+	<%= link_to "#{@user.name}'s Playlists", user_playlists_path(@user.id) %> > 
+	<%= link_to @playlist.name, user_playlist_path(@playlist.user_id, @playlist.id) %>
+</div>
 <h1><%= @playlist.name %></h1>
 <table>
 	<tbody>
@@ -25,3 +31,10 @@
 		<% end %>
 	</tbody>
 </table>
+<div>
+	<strong>Actions</strong> | 
+	<%= link_to "Add a Playlist", new_user_playlist_path(@playlist.user_id) %> | 
+	<%= link_to "Edit Playlist", edit_user_playlist_path(@playlist.id) %> | 
+	<%= link_to "Delete Playlist", [@playlist.user, @playlist], :method => :delete, :confirm => "Are you sure you want to delete #{@playlist.name}?", :title => "Delete #{@playlist.name}?" %>
+</div>
+

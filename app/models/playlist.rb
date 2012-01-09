@@ -8,6 +8,7 @@ class Playlist < ActiveRecord::Base
 	has_many :playlist_song
 	 
 	# Validate the name of the playlist
-	validates :name, :presence => true
+	validates :name, 	:presence => true, 
+						:length => { :maximum => 75 }
 
 end

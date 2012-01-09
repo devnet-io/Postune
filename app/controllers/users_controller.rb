@@ -15,14 +15,14 @@ class UsersController < ApplicationController
 	
 	def new
 		@title = "Register"
-		@user = User.new
+		@new_object = User.new
 	end
 	
 	def create
-		@user = User.new(params[:user])
-		if @user.save
+		@new_object = User.new(params[:user])
+		if @new_object.save
 			flash[:notice] = "You have successfully registered!"
-			redirect_to @user
+			redirect_to @new_object
 		else
 			@title = "Register"
 			render 'new'

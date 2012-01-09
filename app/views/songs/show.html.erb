@@ -1,19 +1,31 @@
-<div>
-	<table>
-		<tbody>
-			<tr>
-				<td><h2><%= @song.title %></h2></td>
-				<td><%= @song.url %></td>
-			</tr>
-			<tr>
-				<td><strong>Album</strong></td>
-				<td><%= @song.album %>
-			</tr>	
-			<tr>
-				<td><strong>Artist</strong></td>
-				<td><%= @song.artist %></td>
-			</tr>
-		</tbody>
-	</table>
+<div class="breadcrumbs">
+	<%= link_to "Admin", admin_index_path %> >
+	<%= link_to "Songs", songs_path %> >
+	<%= link_to @song.title, song_path(@song.id) %>
 </div>
+<table>
+	<tbody>
+		<tr>
+			<td><h2><%= @song.title %></h2></td>
+			<td><%= @song.url %></td>
+		</tr>
+		<tr>
+			<td><strong>Album</strong></td>
+			<td><%= @song.album %>
+		</tr>	
+		<tr>
+			<td><strong>Artist</strong></td>
+			<td><%= @song.artist %></td>
+		</tr>
+		<tr>
+			<td><strong>Added by</strong></td>
+			<td><%= link_to @song.user.name, user_path(@song.user.id) %></td>
+		</tr>
+		<tr>
+			<td><strong>Added at</strong></td>
+			<td><%= @song.created_at.to_formatted_s(:long_ordinal) %></td>
+		</tr>
+	</tbody>
+</table>
+
 
