@@ -1,16 +1,11 @@
 class SongsController < ApplicationController
 
-	before_filter :find_song, :only => [:new, :show, :create]
+	before_filter :find_song, :only => [:show]
 
 	def index
+		@title = "Songs"
 		@songs = Song.all
 		@song_count = Song.count
-	end
-	
-	def new
-	end
-
-	def create
 	end
 	
 	def show
