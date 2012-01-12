@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div>
+	<% if signed_in? %>
+		Logged in as: <%= link_to current_user.name, current_user %>
+	<% end %>
+</div>
+
+<section class="container">
+	<%= yield %>
+</section>
+
+
+</body>
+</html>

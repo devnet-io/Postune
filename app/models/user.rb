@@ -1,7 +1,7 @@
 require 'digest'
 class User < ActiveRecord::Base
 	attr_accessor :unencrypted_password
-	attr_accessible :name, :email, :unencrypted_password, :unencrypted_password_confirmation
+	attr_accessible :name, :email, :unencrypted_password, :unencrypted_password_confirmation, :group_id, :is_active
 	
 	# Every user belongs to a group
 	belongs_to :group

@@ -35,7 +35,6 @@
 </div>
 <div>
 	<strong>Actions</strong> | 
-	<%= link_to "Add a playlist", new_user_playlist_path(@user.id) %> | 
 	<%= link_to "Edit User", edit_user_path(@user.id) %> | 
 	<%= link_to "Delete User", @user, :method => :delete, :confirm => "Are you sure you want to delete #{@user.name}?", :title => "Delete #{@user.name}?" %>
 </div>

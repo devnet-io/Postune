@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	
+	layout 'admin'
 	def show
 		inf = User.find(params[:id])
 		@title = inf.name

@@ -7,13 +7,14 @@ Postune::Application.routes.draw do
 	# -------------------
 	resources :songs, :path => "/admin/songs", :only => [:show, :index, :edit]
 	resources :admin, :only => [ :index ]
+	resources :groups, :path => "/admin/groups"
 	
 	resources :users, :path => "/admin/users" do 
 		resources :playlists do
 			resources :playlist_songs, :path => "song" 
 		end
 	end
-	
+	  
 	# -------------------
 	# Session Routes
 	# -------------------
@@ -25,5 +26,7 @@ Postune::Application.routes.draw do
 	# -------------------
 	# General User Routes
 	# -------------------
+	resources :profile
+	
 end
  
