@@ -1,11 +1,11 @@
 class SongsController < ApplicationController
-
+	
 	before_filter :find_song, :only => [:show]
 	layout 'admin'
 	
 	def index
 		@title = "Songs"
-		@songs = Song.all
+		@songs = Song.paginate(:page => params[:page], :per_page => 25)
 		@song_count = Song.count
 	end
 	
