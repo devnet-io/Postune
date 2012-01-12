@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
+
+#	before_filter :deny_limited_access
 	layout 'admin'
+	
 	def show
 		inf = User.find(params[:id])
 		@title = inf.name

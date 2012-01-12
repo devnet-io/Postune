@@ -1,0 +1,19 @@
+<h1>Groups</h1>
+<table>
+	<tbody>
+		<tr>
+			<th>ID</th>
+			<th>Group Name</th>
+			<th>Permission Level</th>
+			<th>Description</th>
+		</tr>
+		<% @groups.each do |group| %>
+		<tr>
+			<td><%= group.id %></td>
+			<td><%= link_to group.name, new_group_path %></td>
+			<td><%= group.permission_level %></td>
+			<td><%= group.description %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

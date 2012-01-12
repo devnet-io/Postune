@@ -3,9 +3,8 @@
 	padding: 0px;
 }
 body {
-	padding: 10px;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 table {
@@ -30,7 +29,7 @@ a {
 	font-style: italic;
 }
 
-div, input {
+input {
 	padding: 5px;
 }
 
@@ -45,4 +44,56 @@ h1 {
 
 .error {
 	color: #FF000A;
+}
+
+.container {
+	max-width: 1280px;
+	margin: auto;
+}
+
+header {
+	padding: 5px;
+}
+
+header {
+	box-shadow: 1px 1px 5px #666;
+	overflow: hidden;
+}
+
+nav {
+	margin: 0px 5px;
+}
+
+nav a {
+	font-style: normal;
+	color: #FFFFFF;
+	padding: 3px 5px;
+	background: #000000;
+	font-weight: bold;
+}
+
+.header-pane {
+	padding: 13px 0px;
+}
+	
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.main {
+	padding: 15px 5px;
+}
+
+.breadcrumbs {
+	background: #EFEFEF;
+	padding: 5px;
+}
+
+.info {
+	padding: 5px;
+	border-top: 1px #EFEFEF solid;
 }

@@ -1,4 +1,7 @@
 class AdminController < ApplicationController
+
+	layout 'admin'
+
 	def index 
 		@title = "Admin Main"
 		@song_count = Song.count

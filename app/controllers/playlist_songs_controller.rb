@@ -1,7 +1,8 @@
 class PlaylistSongsController < ApplicationController
 
 	before_filter :find_user_playlist, :only => [:show, :new]
-
+	layout 'admin'
+	
 	def index
 	end
 

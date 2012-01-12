@@ -1,6 +1,6 @@
 Postune::Application.routes.draw do
 
-#	root :to => "users#new" 
+	root :to => "profile#new" 
 
 	# -------------------
 	# Admin Routes

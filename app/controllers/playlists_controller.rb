@@ -1,7 +1,8 @@
 class PlaylistsController < ApplicationController
 
 	before_filter :find_user
-
+	layout 'admin'
+	
 	def index
 		@title = "#{@user.name}'s Playlists"
 	end

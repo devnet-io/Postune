@@ -19,6 +19,15 @@ module SessionsHelper
 	
 	def admin?
 		current_user.group.permission_level >= Group.find_by_name("Admin").permission_level 
+		
+	end
+
+	def deny_access
+		redirect_to login_path unless signed_in?
+	end
+	
+	def deny_limited_access
+		redirect_to root_path unless admin?
 	end
 
 	private

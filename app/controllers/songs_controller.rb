@@ -1,7 +1,8 @@
 class SongsController < ApplicationController
 
 	before_filter :find_song, :only => [:show]
-
+	layout 'admin'
+	
 	def index
 		@title = "Songs"
 		@songs = Song.all

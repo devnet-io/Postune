@@ -31,7 +31,7 @@
 		<% end %>
 	</tbody>
 </table>
-<div>
+<div class="info">
 	<strong>Actions</strong> | 
 	<%= link_to "Add a Song to '#{@playlist.name}'", new_user_playlist_playlist_song_path(@playlist.user_id, @playlist.id) %> | 
 	<%= link_to "Edit Playlist", edit_user_playlist_path(@playlist.id) %> | 
