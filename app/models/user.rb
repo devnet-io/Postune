@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 	belongs_to :group
 	
 	# Every user has playlists and songs
-	has_many :playlist
+	has_many :playlist, :dependent => :destroy
 	has_many :song
 	
 	# Email Regex for validation

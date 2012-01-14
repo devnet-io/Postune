@@ -1,9 +1,8 @@
 <div class="breadcrumbs">
 	<%= link_to "Admin", admin_index_path %> > 
-	<%= link_to "Users", users_path %> > <%= link_to @user.name, @user %> > 
-	<%= link_to "#{@user.name}'s Playlists", user_playlists_path(@user.id) %> > 
-	<%= link_to @playlist.name, user_playlist_path(@playlist.user_id, @playlist.id) %> >
-	<%= link_to "New Song", new_user_playlist_playlist_song_path(@playlist.user_id, @playlist.id) %>
+	<%= link_to "Playlists", playlists_path %> > 
+	<%= link_to @playlist.name, @playlist %>
+	<%= link_to "New Playlist Song", new_playlist_playlist_song_path(@playlist) %>
 </div>
 <h1>New Playlist Song</h1>
 <%= render 'playlist_songs/new_form' %>

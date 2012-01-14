@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
 	def new
 		@title = "Login"
 		@user = User.new
@@ -16,9 +17,9 @@ class SessionsController < ApplicationController
 			@user = User.new
 			render "new"
 		else
-			# User a helper method to sign the user in
 			sign_in user
 			redirect_to user
 		end
 	end
+	
 end

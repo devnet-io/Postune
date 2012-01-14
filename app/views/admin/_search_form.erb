@@ -1,0 +1,8 @@
+<%= form_for(admin_index_path, :method => 'get', :id => 'admin_search') do |f| %>
+	<div class="field">
+		<%= f.text_field :search %>
+	</div>
+	<div class="action">
+		<%= f.submit 'Search' %>
+	</div>
+<% end %>	

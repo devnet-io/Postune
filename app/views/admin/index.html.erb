@@ -20,9 +20,16 @@
 			<td><%= @song_count %></td>
 		</tr>
 		<tr>
+			<td>Playlists</td>
+			<td><%= link_to playlists_path, playlists_path %></td>
+			<td><%= @playlist_count %></td>
+		</tr>
+		<tr>
 			<td>Groups</td>
 			<td><%= link_to groups_path, groups_path %></td>
 			<td><%= @group_count %></td>
 		</tr>
 	</tbody>
 </table>
+<h1>Search</h1>
+<%= render 'admin/search_form' %>

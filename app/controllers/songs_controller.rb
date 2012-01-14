@@ -1,5 +1,6 @@
 class SongsController < ApplicationController
-	
+
+	before_filter :deny_access, :deny_limited_access	
 	before_filter :find_song, :only => [:show]
 	layout 'admin'
 	

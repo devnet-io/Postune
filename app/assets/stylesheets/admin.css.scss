@@ -46,8 +46,12 @@ input[type="radio"]+label {
 	margin: 5px 0px;
 }
 
+form {
+	padding: 5px;
+}
+
 h1 {
-	padding: 5px 0px;
+	padding: 5px;
 }
 
 .error {
@@ -94,11 +98,18 @@ nav a {
 
 .main {
 	padding: 15px 5px;
+	
+	h1 {
+		border-bottom: 5px solid #BFBFBF;
+		background: #EFEFEF;
+		margin: 5px 0px;
+	}
 }
 
 .breadcrumbs {
 	background: #EFEFEF;
 	padding: 5px;
+	margin: 0px 0px 10px 0px;
 }
 
 .info {

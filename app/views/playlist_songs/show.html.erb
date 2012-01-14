@@ -1,15 +1,15 @@
 <div class="breadcrumbs">
 	<%= link_to "Admin", admin_index_path %> > 
-	<%= link_to "Users", users_path %> > <%= link_to @user.name, @user %> > 
-	<%= link_to "#{@user.name}'s Playlists", user_playlists_path(@user.id) %> > 
-	<%= link_to @playlist.name, user_playlist_path(@playlist.user_id, @playlist.id) %> >
-	<%= link_to @song.title, user_playlist_playlist_song_path(@playlist.user_id, @playlist.id, @playlist_song.id) %>
+	<%= link_to "Playlists", playlists_path %> > 
+	<%= link_to @playlist.name, @playlist %>
+	<%= link_to @song.title, playlist_playlist_song_path(@playlist, @playlist_song) %>
 </div>
+<h1><%= @song.title %></h1>
 <table>
 	<tbody>
 		<tr>
-			<td><h2><%= @song.title %></h2></td>
-			<td><%= @song.url %></td>
+			<th>Category</th>
+			<th>Value</th>
 		</tr>
 		<tr>
 			<td><strong>Album</strong></td>
@@ -19,6 +19,23 @@
 			<td><strong>Artist</strong></td>
 			<td><%= @song.artist %></td>
 		</tr>
-	</tbody>
+		<tr>
+			<td><strong>URL</strong></td>
+			<td><%= @song.url %>
+		</tr>	
+		<tr>
+			<td><strong>Artwork</strong></td>
+			<td><%= @song.artwork %>
+		</tr>	
+		<tr>
+			<td><strong>Service</strong></td>
+			<td><%= @song.service %>
+		</tr>	
+	</tbody>	
 </table>
+<div class="info">
+	<strong>Actions</strong> | 
+	<%= link_to "Edit '#{@song.title}'", edit_playlist_playlist_song_path(@playlist, @song) %> | 
+	<%= link_to "Delete '#{@song.title}'", playlist_playlist_song_path(@playlist, @playlist_song), :method => :delete, :confirm => "Are you sure you want to delete #{@song.title}?", :title => "Delete #{@song.title}?" %>
+</div>
 

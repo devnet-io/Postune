@@ -1,10 +1,13 @@
 class PlaylistsController < ApplicationController
 
-	before_filter :find_user
+	before_filter :deny_access, :deny_limited_access
+	before_filter :find_playlist, :only => [:show]
+	before_filter :find_user, :only => [:create]
 	layout 'admin'
 	
 	def index
-		@title = "#{@user.name}'s Playlists"
+		@title = "Playlists"
+		@playlists = Playlist.all
 	end
 
 	def new
@@ -13,8 +16,7 @@ class PlaylistsController < ApplicationController
 	end
 	
 	def show
-		@title = @user.name
-		@playlist = @user.playlist.find(params[:id])
+		@title = @playlist.name
 		@playlist_songs = @playlist.playlist_song.order("position")
 	end
 	
@@ -22,7 +24,7 @@ class PlaylistsController < ApplicationController
 		@new_playlist = Playlist.new(:name => params[:playlist][:name], :user_id => params[:user_id])
 		if @new_playlist.save
 			flash[:notice] = "Successfully Added Playlist"
-			redirect_to user_playlists_path(params[:user_id])
+			redirect_to playlists_path
 		else
 			@title = "New Playlist"
 			render :action => 'new', :params => params[:user_id]
@@ -30,8 +32,12 @@ class PlaylistsController < ApplicationController
 	end
 	
 	private
+		def find_playlist
+			@playlist = Playlist.find(params[:id])
+		end
+		
 		def find_user
 			@user = User.find(params[:user_id])
 		end
-	
+		
 end

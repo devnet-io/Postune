@@ -1,10 +1,8 @@
 class PlaylistSongsController < ApplicationController
 
-	before_filter :find_user_playlist, :only => [:show, :new]
+	before_filter :deny_access, :deny_limited_access
+	before_filter :find_playlist, :only => [:show, :new, :create]
 	layout 'admin'
-	
-	def index
-	end
 
 	def new
 		@title = "New Playlist Song"
@@ -18,10 +16,10 @@ class PlaylistSongsController < ApplicationController
 	end
 	
 	def create
-		@new_song = Song.new(:title => params[:song][:title], :album => params[:song][:album], :artist => params[:song][:artist], :url => params[:song][:url], :user_id => params[:user_id])
+		@new_song = Song.new(:title => params[:song][:title], :album => params[:song][:album], :artist => params[:song][:artist], :url => params[:song][:url], :user_id => @playlist.user.id)
 		
 		if @new_song.save
-			just_created = Song.where("#{:user_id} = #{params[:user_id]} AND #{:url} = '#{params[:song][:url]}'").last
+			just_created = Song.where("#{:user_id} = #{@playlist.user.id} AND #{:url} = '#{params[:song][:url]}'").last
 			last_playlist_song = PlaylistSong.where("#{:playlist_id} = #{params[:playlist_id]}").order("position asc").last
 			last_position = (last_playlist_song == nil) ? 0 : last_playlist_song.position
 			
@@ -29,7 +27,7 @@ class PlaylistSongsController < ApplicationController
 			
 			if @new_playlist_song.save
 				flash[:notice] = "You have added a song!"
-				redirect_to user_playlist_path(params[:user_id], params[:playlist_id])
+				redirect_to @playlist
 			else
 				@title = "New Playlist Song"
 				render :action => 'new'
@@ -42,9 +40,8 @@ class PlaylistSongsController < ApplicationController
 	end
 	
 	private
-		def find_user_playlist
-			@user = User.find(params[:user_id])
-			@playlist = @user.playlist.find(params[:playlist_id])
+		def find_playlist
+			@playlist = Playlist.find(params[:playlist_id])
 		end
 
 end

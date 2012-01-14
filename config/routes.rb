@@ -9,11 +9,13 @@ Postune::Application.routes.draw do
 	resources :admin, :only => [ :index ]
 	resources :groups, :path => "/admin/groups"
 	
-	resources :users, :path => "/admin/users" do 
-		resources :playlists do
-			resources :playlist_songs, :path => "song" 
-		end
+	resources :users, :path => "/admin/users" do
+		resources :playlists, :only => [:new, :create, :edit]
 	end
+	resources :playlists, :path => "/admin/playlists", :only => [:show, :index] do
+		resources :playlist_songs, :path => "song" 
+	end
+	
 	  
 	# -------------------
 	# Session Routes

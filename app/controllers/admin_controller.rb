@@ -1,7 +1,8 @@
 class AdminController < ApplicationController
 
+	before_filter :deny_access, :deny_limited_access
 	layout 'admin'
-
+	
 	def index 
 		@title = "Admin Main"
 		@song_count = Song.count

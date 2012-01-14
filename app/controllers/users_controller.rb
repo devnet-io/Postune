@@ -2,8 +2,9 @@ class UsersController < ApplicationController
 	
 	# Accessible only by admin
 	before_filter :deny_limited_access
+	before_filter :deny_access
 	
-	before_filter :find_user, :only => [:show, :edit, :update]
+	before_filter :find_user, :only => [:show, :edit, :update, :destroy]
 	
 	layout 'admin'
 	
@@ -50,6 +51,16 @@ class UsersController < ApplicationController
 			@title = "Edit '#{@user.name}'"
 			@groups = Group.all
 			render 'edit'
+		end
+	end
+	
+	def destroy
+		if @user.destroy
+			flash[:success] = "Deleted #{@user.name}"
+			redirect_to users_path 
+		else
+			@title = @user.name
+			render @user
 		end
 	end
 	

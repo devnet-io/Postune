@@ -7,6 +7,8 @@ class Song < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :service
 	
+	has_many :playlist_song, :dependent => :destroy
+	
 	# Regular Expression for validating an URL/URI
 	# chrisbloom7 from 'https://gist.github.com/948880#file_environment.rb'
 	
