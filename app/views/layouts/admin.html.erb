@@ -2,9 +2,8 @@
 <html>
 <head>
   <title><%= title %></title>
-  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag    "admin" %>
   <%= javascript_include_tag "application" %>
-  <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
   <%= csrf_meta_tags %>
 </head>
 
@@ -32,11 +31,14 @@
 	</header>
 
 	<section class="main">
+		<% flash.each do |key, value| %>
+          <div class="flash <%= key %>"><%= value %></div>
+        <% end %>
 		<%= yield %>
 	</section>
 
 	<footer>
-
+		Postune &copy; 2011 - <%= Date.today.year %>
 	</footer>
 </div>
 </body>

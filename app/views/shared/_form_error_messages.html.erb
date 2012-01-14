@@ -1,5 +1,5 @@
-<% if @new_object.errors.any? %>
-	<% @new_object.errors.full_messages.each do |msg| %>
+<% if object.errors.any? %>
+	<% object.errors.full_messages.each do |msg| %>
 		<div class="error">
 			<%= msg %>
 		</div>

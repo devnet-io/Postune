@@ -1,5 +1,5 @@
-<%= form_for(@new_object, :url => user_playlist_playlist_songs_path) do |f| %>
-	<%= render 'shared/form_error_messages' %>
+<%= form_for(@new_song, :url => user_playlist_playlist_songs_path) do |f| %>
+	<%= render 'shared/form_error_messages', :object => f.object %>
 	<div class="field">
 		<%= f.label :title %>
 		<%= f.text_field :title %>

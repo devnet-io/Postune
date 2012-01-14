@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
-
-#	before_filter :deny_limited_access
+	
+	# Accessible only by admin
+	before_filter :deny_limited_access
+	
+	before_filter :find_user, :only => [:show, :edit, :update]
+	
 	layout 'admin'
 	
 	def show
-		inf = User.find(params[:id])
-		@title = inf.name
-		@user = inf
+		@title = @user.name
 	end
 
 
@@ -18,18 +20,43 @@ class UsersController < ApplicationController
 	
 	def new
 		@title = "Register"
-		@new_object = User.new
+		@new_user = User.new
 	end
 	
 	def create
-		@new_object = User.new(params[:user])
-		if @new_object.save
+		@new_user = User.new(params[:user])
+		if @new_user.save
 			flash[:notice] = "You have successfully registered!"
-			redirect_to @new_object
+			redirect_to @new_user
 		else
 			@title = "Register"
 			render 'new'
 		end
 	end
+	
+	def edit
+		@title = "Edit '#{@user.name}'"
+		@groups = Group.all
+	end
+	
+	def update
+		# Check if the password field is blank to see if validation should occur
+		@user.updating_password = (params[:user][:unencrypted_password].blank? && params[:user][:unencrypted_password_confirmation].blank?) ? false : true
+		
+		if @user.update_attributes(params[:user])
+			flash[:success] = "Updated #{@user.name}'s settings."
+			redirect_to @user
+		else
+			@title = "Edit '#{@user.name}'"
+			@groups = Group.all
+			render 'edit'
+		end
+	end
+	
+	private
+	
+		def find_user
+			@user = User.find(params[:id])
+		end
 	
 end

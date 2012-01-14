@@ -9,7 +9,7 @@ class PlaylistsController < ApplicationController
 
 	def new
 		@title = "New Playlist"
-		@new_object = Playlist.new
+		@new_playlist = Playlist.new
 	end
 	
 	def show
@@ -19,8 +19,8 @@ class PlaylistsController < ApplicationController
 	end
 	
 	def create
-		@new_object = Playlist.new(:name => params[:playlist][:name], :user_id => params[:user_id])
-		if @new_object.save
+		@new_playlist = Playlist.new(:name => params[:playlist][:name], :user_id => params[:user_id])
+		if @new_playlist.save
 			flash[:notice] = "Successfully Added Playlist"
 			redirect_to user_playlists_path(params[:user_id])
 		else

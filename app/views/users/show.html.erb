@@ -17,12 +17,12 @@
 			<td><%= @user.email %></td>
 		</tr>
 		<tr>
-			<td>Password</td>
-			<td><%= @user.password %></td>
-		</tr>
-		<tr>
 			<td>Created</td>
 			<td><%= @user.created_at.to_formatted_s(:long_ordinal) %></td>
+		</tr>
+		<tr>
+			<td>Last Signed In</td>
+			<td><%= (!@user.last_sign_in.nil?) ? @user.last_sign_in.to_formatted_s(:long_ordinal) : "Never" %></td>
 		</tr>
 		<tr>
 			<td>Group</td>

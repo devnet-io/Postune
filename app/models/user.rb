@@ -1,7 +1,7 @@
 require 'digest'
 class User < ActiveRecord::Base
-	attr_accessor :unencrypted_password
-	attr_accessible :name, :email, :unencrypted_password, :unencrypted_password_confirmation, :group_id, :is_active
+	attr_accessor :unencrypted_password, :updating_password
+	attr_accessible :name, :email, :group_id, :is_active, :unencrypted_password, :unencrypted_password_confirmation
 	
 	# Every user belongs to a group
 	belongs_to :group
@@ -22,7 +22,8 @@ class User < ActiveRecord::Base
 										:uniqueness => { :case_sensitive => false }
 	validates :unencrypted_password,	:presence => true,
 										:confirmation => true,
-										:length => { :within => 6..50 }
+										:length => { :within => 6..50 },
+										:if => :should_validate?
 	
 	# Run the encryption method and fill out the other fields with default values						
 	before_save :init
@@ -36,16 +37,20 @@ class User < ActiveRecord::Base
 	# Salt a given string	
 	def make_salt(string)
 		Digest::SHA2.hexdigest(string)
-	end		
+	end	
+	
+	def should_validate?
+		updating_password || new_record?
+	end	
 							
 	private 
 		# Initialize all the User values	
 		def init
-			self.is_active 			= 0
-			self.group_id 			= 1
-			self.salt 				= make_salt("#{Time.now.utc}**")
-			self.activation_code 	= generate_activation_code
-			self.password 			= generate_encrypted_password
+			self.is_active 				||= 0
+			self.group_id 				||= 1
+			self.salt 					||= make_salt("#{Time.now.utc}**")
+			self.activation_code 		||= generate_activation_code
+			self.password 				||= generate_encrypted_password
 		end	
 			
 		def generate_activation_code
