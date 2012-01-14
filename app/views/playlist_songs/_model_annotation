@@ -1,0 +1,34 @@
+<table>
+	<tbody>
+		<tr>
+			<td><strong>id</strong></td>
+			<td>integer</td>
+			<td>Automatically incremented ID value to identify the record</td>
+		</tr>
+		<tr>
+			<td><strong>song_id</strong></td>
+			<td>idnteger/td>
+			<td>A foreign key to a song</td>
+		</tr>
+		<tr>
+			<td><strong>position</strong></td>
+			<td>integer</td>
+			<td>An integer that orders the songs in the playlist</td>
+		</tr>
+		<tr>
+			<td><strong>playlist_id</strong></td>
+			<td>integer</td>
+			<td>A foreign key that shows which playlist the song record belongs to</td>
+		</tr>
+		<tr>
+			<td><strong>created_at<strong></td>
+			<td>datetime</td>
+			<td>The date that the playlist song was created</td>
+		</tr>
+		<tr>
+			<td><strong>updated_at<strong></td>
+			<td>datetime</td>
+			<td>The last time the playlist song's record was updated</td>
+		</tr>
+	</tbody>	
+</table>

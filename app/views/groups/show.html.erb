@@ -1,0 +1,25 @@
+<div class="breadcrumbs">
+	<%= link_to "Admin", admin_index_path %> > 
+	<%= link_to "Group", groups_path %> > 
+	<%= link_to "Users in '#{@group.name}'", @group %>
+</div>
+<h1>Users in '<%= @group.name %>'</h1>
+<table>
+	<tbody>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Group</th>
+		</tr>
+		<% @groups.each do |user| %>
+		<tr>
+			<td><%= user.id %></td>
+			<td><%= link_to user.name, user_path(user.id) %></td>
+			<td><%= user.email %></td>
+			<td><%= user.group.name %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<%= will_paginate %>

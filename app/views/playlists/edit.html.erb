@@ -1,0 +1,7 @@
+<div class="breadcrumbs">
+	<%= link_to "Admin", admin_index_path %> > 
+	<%= link_to "Playlists", playlists_path %> > 
+	<%= link_to "Edit '#{@playlist.name}'", edit_playlist_path(@playlist) %>
+</div>
+<h1>Edit '<%= @playlist.name %>'</h1>
+<%= render 'playlists/edit_form' %>

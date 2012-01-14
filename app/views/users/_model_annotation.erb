@@ -1,0 +1,59 @@
+<table>
+	<tbody>
+		<tr>
+			<td><strong>id</strong></td>
+			<td>integer</td>
+			<td>Automatically incremented ID value to identify the record</td>
+		</tr>
+		<tr>
+			<td><strong>name</strong></td>
+			<td>string</td>
+			<td>Unique name chosen by the user during registration that is used to login</td>
+		</tr>
+		<tr>
+			<td><strong>email</strong></td>
+			<td>string</td>
+			<td>An email address to contact the user</td>
+		</tr>
+		<tr>
+			<td><strong>password</strong></td>
+			<td>string</td>
+			<td>Encrypted value used by the user to login</td>
+		</tr>
+		<tr>
+			<td><strong>group_id</strong></td>
+			<td>integer</td>
+			<td>A foreign key to a group that assigns the user their permissions</td>
+		</tr>
+		<tr>
+			<td><strong>is_active</strong></td>
+			<td>integer</td>
+			<td>An integer determining whether or not the users account was activated</td>
+		</tr>
+		<tr>
+			<td><strong>activation_code</strong></td>
+			<td>string</td>
+			<td>An automatically generated code that is used to activate the user's account</td>
+		</tr>
+		<tr>
+			<td><strong>last_sign_in</strong></td>
+			<td>datetime</td>
+			<td>The last time the user signed in</td>
+		</tr>
+		<tr>
+			<td><strong>created_at<strong></td>
+			<td>datetime</td>
+			<td>The date that the user created their account</td>
+		</tr>
+		<tr>
+			<td><strong>updated_at<strong></td>
+			<td>datetime</td>
+			<td>The last time the user's record was updated</td>
+		</tr>
+		<tr>
+			<td><strong>salt</strong></td>
+			<td>string</td>
+			<td>An encrypted salt value that is added to the password</td>
+		</tr>
+	</tbody>
+</table>

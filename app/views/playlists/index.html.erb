@@ -14,7 +14,7 @@
 		<tr>
 			<td><%= p.id %></td>
 			<td><%= link_to p.name, p %></td>
-			<td><%= p.user.name %></td>
+			<td><%= link_to p.user.name, p.user %></td>
 		</tr>
 		<% end %>	
 	</tbody>

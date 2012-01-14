@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
 	def index
 		@title = "All Users"
-		@users = User.paginate(:page => params[:page], :per_page => 10)
+		@users = User.paginate(:page => params[:page], :per_page => 25)
 		@count = User.count
 	end
 	
@@ -55,13 +55,9 @@ class UsersController < ApplicationController
 	end
 	
 	def destroy
-		if @user.destroy
-			flash[:success] = "Deleted #{@user.name}"
-			redirect_to users_path 
-		else
-			@title = @user.name
-			render @user
-		end
+		@user.destroy
+		flash[:success] = "Deleted #{@user.name}"
+		redirect_to users_path 
 	end
 	
 	private

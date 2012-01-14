@@ -5,14 +5,14 @@ Postune::Application.routes.draw do
 	# -------------------
 	# Admin Routes
 	# -------------------
-	resources :songs, :path => "/admin/songs", :only => [:show, :index, :edit]
-	resources :admin, :only => [ :index ]
+	resources :songs, :path => "/admin/songs", :only => [:show, :index, :edit, :update]
+	resources :admin, :only => [:index]
 	resources :groups, :path => "/admin/groups"
 	
 	resources :users, :path => "/admin/users" do
-		resources :playlists, :only => [:new, :create, :edit]
+		resources :playlists, :only => [:new, :create]
 	end
-	resources :playlists, :path => "/admin/playlists", :only => [:show, :index] do
+	resources :playlists, :path => "/admin/playlists", :only => [:show, :index, :destroy, :edit, :update] do
 		resources :playlist_songs, :path => "song" 
 	end
 	

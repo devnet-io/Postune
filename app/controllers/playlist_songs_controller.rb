@@ -38,6 +38,18 @@ class PlaylistSongsController < ApplicationController
 			render :action => 'new'
 		end
 	end
+
+	def edit
+		# When you update, you can't move it to a position that is past the last item. Every item less or equal moves down one
+	end
+	
+	def update
+	
+	end
+	
+	def destroy
+		# When you destroy, you have to update the position of everything with a greater position down one
+	end
 	
 	private
 		def find_playlist

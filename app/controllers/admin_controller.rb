@@ -1,5 +1,7 @@
 class AdminController < ApplicationController
 
+	include AdminHelper
+
 	before_filter :deny_access, :deny_limited_access
 	layout 'admin'
 	

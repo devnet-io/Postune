@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
 
+	before_filter :deny_access, :deny_limited_access
 	before_filter :find_group, :only => [:show]
 	layout 'admin'
 	
@@ -14,6 +15,7 @@ class GroupsController < ApplicationController
 	
 	def show
 		@title = @group.name
+		@groups = User.where("#{:group_id} = #{@group.id}").paginate(:page => params[:page], :per_page => 25)
 	end
 	
 	private

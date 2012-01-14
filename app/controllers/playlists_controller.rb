@@ -1,7 +1,7 @@
 class PlaylistsController < ApplicationController
 
 	before_filter :deny_access, :deny_limited_access
-	before_filter :find_playlist, :only => [:show]
+	before_filter :find_playlist, :only => [:show, :destroy, :edit, :update]
 	before_filter :find_user, :only => [:create]
 	layout 'admin'
 	
@@ -29,6 +29,26 @@ class PlaylistsController < ApplicationController
 			@title = "New Playlist"
 			render :action => 'new', :params => params[:user_id]
 		end
+	end
+	
+	def edit
+		@title = "Edit '#{@playlist.name}'"
+	end
+	
+	def update
+		if @playlist.update_attributes(params[:playlist])
+			flash[:notice] = "Successfully updated '#{@playlist.name}'"
+			redirect_to playlists_path
+		else
+			@title = "Edit '#{@playlist.name}'"
+			render edit_playlist_path(@playlist)
+		end
+	end
+	
+	def destroy
+		@playlist.destroy
+		flash[:notice] = "Deleted #{@playlist.name}"
+		redirect_to playlists_path
 	end
 	
 	private

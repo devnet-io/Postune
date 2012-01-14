@@ -36,6 +36,14 @@ input {
 label {
 	padding: 5px 0px;
 	display: block;
+	font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 18px;
 }
 
 input[type="radio"]+label {
