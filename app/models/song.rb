@@ -46,7 +46,15 @@ class Song < ActiveRecord::Base
 			return false
 		end
 	end
-
+	
+	def self.search(query)
+		if query
+			where("title LIKE ?", "%#{query}%") 
+		else 
+			scoped
+		end
+	end
+	
 	private
 	
 		# Get the proper service and further validate the URL and extract the external ID

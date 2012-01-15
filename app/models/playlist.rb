@@ -10,5 +10,13 @@ class Playlist < ActiveRecord::Base
 	# Validate the name of the playlist
 	validates :name, 	:presence => true, 
 						:length => { :maximum => 75 }
-
+	
+	def self.search(query)
+		if query
+			where("name LIKE ?", "%#{query}%") 
+		else 
+			scoped
+		end
+	end
+	
 end

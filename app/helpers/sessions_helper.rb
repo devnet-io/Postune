@@ -6,6 +6,11 @@ module SessionsHelper
 		self.current_user = user
 	end
 	
+	def sign_out
+		cookies.delete(:remember_token)
+		self.current_user = nil
+	end
+	
 	def current_user=(user)
 		@current_user = user
 	end
@@ -29,6 +34,10 @@ module SessionsHelper
 	
 	def deny_limited_access
 		redirect_to root_path unless admin?
+	end
+	
+	def correct_user
+		# Is the profile user id the same as the current user
 	end
 
 	private

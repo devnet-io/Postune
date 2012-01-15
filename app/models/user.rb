@@ -33,7 +33,15 @@ class User < ActiveRecord::Base
 		return nil if user.nil?
 		return user if (user.password ==  user.make_salt("#{user.salt}#{submitted_password}"))
 	end
-		
+	
+	def self.search(query)
+		if query
+			where("name LIKE ?", "%#{query}%") 
+		else 
+			scoped
+		end
+	end
+			
 	# Salt a given string	
 	def make_salt(string)
 		Digest::SHA2.hexdigest(string)
@@ -42,7 +50,7 @@ class User < ActiveRecord::Base
 	def should_validate?
 		updating_password || new_record?
 	end	
-							
+					
 	private 
 		# Initialize all the User values	
 		def init

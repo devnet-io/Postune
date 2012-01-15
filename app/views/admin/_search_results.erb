@@ -1,0 +1,32 @@
+<% if params[:search] %>
+<table>
+	<tbody>
+		<tr>
+			<th>ID</th>
+			<th>Type</th>
+			<th>Result</th>
+		</tr>
+		<% @results['Users'].each do |user| %>
+		<tr>
+			<td><%= user.id %></td>
+			<td>User</td>
+			<td><%= link_to user.name, user %></td>
+		</tr>
+		<% end %>
+		<% @results['Playlists'].each do |playlist| %>
+		<tr>
+			<td><%= playlist.id %></td>
+			<td>Playlist</td>
+			<td><%= link_to playlist.name, playlist %></td>
+		</tr>
+		<% end %>
+		<% @results['Songs'].each do |song| %>
+		<tr>
+			<td><%= song.id %></td>
+			<td>Song</td>
+			<td><%= link_to song.title, Song %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<% end %>

@@ -6,11 +6,13 @@ class AdminController < ApplicationController
 	layout 'admin'
 	
 	def index 
-		@title = "Admin Main"
+		@title = "Admin Main #{params[:search]}"
 		@song_count = Song.count
 		@user_count = User.count
 		@playlist_count = Playlist.count
 		@group_count = Group.count
+		
+		search(params[:search])
 	end
 
 end
