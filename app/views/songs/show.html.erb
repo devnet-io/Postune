@@ -18,6 +18,10 @@
 			<td><%= @song.artist %></td>
 		</tr>
 		<tr>
+			<td><strong>ID</strong></td>
+			<td><%= @song.external_id %></td>
+		</tr>
+		<tr>
 			<td><strong>Added by</strong></td>
 			<td><%= link_to @song.user.name, user_path(@song.user.id) %></td>
 		</tr>
@@ -27,5 +31,10 @@
 		</tr>
 	</tbody>
 </table>
+<div class="info">
+	<strong>Actions</strong> | 
+	<%= link_to "Delete Song", @song, :method => :delete, :confirm => "Are you sure you want to delete '#{@song.title}'?", :title => "Delete '#{@song.title}'?" %> | 
+	<%= link_to "Edit Song", edit_song_path(@song) %>
+</div>
 
 

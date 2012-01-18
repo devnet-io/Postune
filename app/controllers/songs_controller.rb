@@ -1,7 +1,7 @@
 class SongsController < ApplicationController
 
 	before_filter :deny_access, :deny_limited_access	
-	before_filter :find_song, :only => [:show]
+	before_filter :find_song, :only => [:show, :destroy, :edit, :update]
 	layout 'admin'
 	
 	def index
@@ -15,15 +15,23 @@ class SongsController < ApplicationController
 	end
 	
 	def edit
-	
+		@title = "Edit '#{@song.title}'"
 	end
 	
 	def update
-	
+		if @song.update_attributes(params[:song])
+			flash[:success] = "Successfully edited '#{@song.title}'"
+			redirect_to songs_path
+		else
+			@title = "Edit '#{@song.title}'"
+			render 'edit'
+		end
 	end
 	
 	def destroy
-	
+		@song.destroy
+		flash[:notice] = "Successfully deleted #{@song.title}"
+		redirect_to songs_path
 	end
 	
 	private
