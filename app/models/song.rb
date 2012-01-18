@@ -60,6 +60,12 @@ class Song < ActiveRecord::Base
 		self.artwork = (result[0]["artwork_url"].nil?) ? result[0]["user"]["avatar_url"] : result[0]["artwork_url"]
 	end
 	
+	def search_youtube(query)
+		data = open("http://gdata.youtube.com/feeds/api/videos?max-results=1&alt=json&q=#{query}").read
+		result = JSON.parse(data)
+		self.artwork = result["feed"]["entry"][0]["media$group"]["media$thumbnail"][0]["url"]
+	end
+	
 	# Allows to search for a song based on title
 	def self.search(query)
 		if query
@@ -77,7 +83,7 @@ class Song < ActiveRecord::Base
 			self.external_id 	||= get_external(self.url)
 			
 			if self.service_id == Service.find_by_name("YouTube").id
-			
+				search_youtube(self.url)
 			elsif self.service_id == Service.find_by_name("Soundcloud").id
 				search_soundcloud(self.url)
 			end

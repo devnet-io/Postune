@@ -21,7 +21,7 @@
 			<td><%= p_song.position %></td>
 			<td><%= p_song.id %></td>
 			<td><%= p_song.song.user.name %></td>
-			<td><%= link_to p_song.song.title, playlist_playlist_song_path(@playlist.id, p_song.id) %></td>
+			<td><%= link_to p_song.song.title, song_path(p_song.song.id) %></td>
 			<td><%= p_song.song.artist %></td>
 			<td><%= p_song.song.album %></td>
 			<td><%= p_song.song.url %></td>

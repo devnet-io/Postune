@@ -1,7 +1,7 @@
 class PlaylistSongsController < ApplicationController
 
 	before_filter :deny_access, :deny_limited_access
-	before_filter :find_playlist, :only => [:show, :new, :create]
+	before_filter :find_playlist, :only => [:new, :create]
 	layout 'admin'
 
 	def new
@@ -9,12 +9,6 @@ class PlaylistSongsController < ApplicationController
 		@new_song = Song.new
 	end
 
-	def show
-		@playlist_song = @playlist.playlist_song.find(params[:id])
-		@title = @playlist_song.song.title
-		@song = @playlist_song.song
-	end
-	
 	def create
 		@new_song = Song.new(:title => params[:song][:title], :album => params[:song][:album], :artist => params[:song][:artist], :url => params[:song][:url], :user_id => @playlist.user.id)
 		
