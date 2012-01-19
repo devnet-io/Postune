@@ -1,6 +1,6 @@
 class PlaylistsController < ApplicationController
 
-	before_filter :deny_access, :deny_limited_access
+	before_filter :deny_access, :deny_limited_access, :only => [:show, :destroy, :edit, :update, :index, :new]
 	before_filter :find_playlist, :only => [:show, :destroy, :edit, :update]
 	before_filter :find_user, :only => [:create]
 	layout 'admin'
@@ -45,6 +45,15 @@ class PlaylistsController < ApplicationController
 		end
 	end
 	
+	def sort
+		songs = params[:song]
+		i = 1
+		songs.each do |id|
+			PlaylistSong.find(id).update_attributes(:position => i)
+			i+=1
+		end
+	end
+
 	def destroy
 		@playlist.destroy
 		flash[:notice] = "Deleted #{@playlist.name}"

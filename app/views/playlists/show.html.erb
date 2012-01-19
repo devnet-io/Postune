@@ -5,8 +5,8 @@
 </div>
 <h1><%= @playlist.name %></h1>
 <table>
-	<tbody>
-		<tr>
+	<tbody class="playlist-sortable">
+		<tr class="table-sort-disable">
 			<th></th>
 			<th></th>
 			<th>ID</th> 
@@ -16,9 +16,9 @@
 			<th>Album</th>
 		</tr>
 		<% @playlist_songs.each do |p_song| %>
-		<tr>
+		<tr id="song_<%= p_song.id %>">
 			<td><%= image_tag(p_song.song.service.icon) %></td>
-			<td><%= p_song.position %></td>
+			<td class="song-position"><%= p_song.position %></td>
 			<td><%= p_song.id %></td>
 			<td><%= p_song.song.user.name %></td>
 			<td><%= link_to p_song.song.title, song_path(p_song.song.id) %></td>

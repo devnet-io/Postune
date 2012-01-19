@@ -13,9 +13,9 @@ Postune::Application.routes.draw do
 		resources :playlists, :only => [:new, :create]
 	end
 	resources :playlists, :path => "/admin/playlists", :only => [:show, :index, :destroy, :edit, :update] do
-		resources :playlist_songs, :path => "song" 
+		resources :playlist_songs, :path => "song"
+		post :sort, :on => :collection
 	end
-	
 	  
 	# -------------------
 	# Session Routes

@@ -1,6 +1,8 @@
 # TODO
 # - Make the external id match an id that is given by the api of the website instead of a split [DONE]
 #	- Clean up this code
+# - Finish URL Validation
+#	- Add a way to check if the YouTube video is embeddable
 # - Fix the find artist method
 # - Make the search look for artist and albums in addition to title
 
@@ -92,7 +94,7 @@ class Song < ActiveRecord::Base
 	
 	def find_artist
 		if self.service_id == Service.find_by_name("YouTube").id
-			@@results["feed"]["entry"][0]["author"][0]["name"]
+			@@results["feed"]["entry"][0]["author"][0]["name"]["$t"]
 		elsif self.service_id == Service.find_by_name("Soundcloud").id
 			@@results["user"]["username"]
 		end
@@ -121,7 +123,8 @@ class Song < ActiveRecord::Base
 			end
 			
 			self.artwork 		||= find_artwork
-			self.artist			||= find_artist
+			
+			self.artist = (self.artist.empty?) ? find_artist : self.artist
 		end
 
 
