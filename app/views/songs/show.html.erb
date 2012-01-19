@@ -4,6 +4,11 @@
 	<%= link_to @song.title, song_path(@song.id) %>
 </div>
 <h1><%= @song.title %></h1>
+<% if !@song.artwork.nil? %>
+	<div class="song-img">
+		<%= image_tag(@song.artwork) %>
+	</div>
+<% end %>
 <table>
 	<tbody>
 		<tr>

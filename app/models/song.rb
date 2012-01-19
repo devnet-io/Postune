@@ -53,6 +53,7 @@ class Song < ActiveRecord::Base
 		end
 	end
 	
+	# Search Soundcloud to get info using the external id
 	def search_soundcloud(query)
 		soundcloud_client_id = "33f255a6f2a015cd2bf4c80dc37ebcf7"
 		data = open("http://api.soundcloud.com/tracks.json?client_id=#{soundcloud_client_id}&q=#{self.external_id}&limit=1").read
@@ -60,10 +61,19 @@ class Song < ActiveRecord::Base
 		self.artwork = (result[0]["artwork_url"].nil?) ? result[0]["user"]["avatar_url"] : result[0]["artwork_url"]
 	end
 	
+	# Search Youtube to get info using the external id
 	def search_youtube(query)
 		data = open("http://gdata.youtube.com/feeds/api/videos?max-results=1&alt=json&q=#{query}").read
 		result = JSON.parse(data)
 		self.artwork = result["feed"]["entry"][0]["media$group"]["media$thumbnail"][0]["url"]
+	end
+	
+	def find_artwork
+		if self.service_id == Service.find_by_name("YouTube").id
+			search_youtube(self.url)
+		elsif self.service_id == Service.find_by_name("Soundcloud").id
+			search_soundcloud(self.url)
+		end
 	end
 	
 	# Allows to search for a song based on title
@@ -81,12 +91,7 @@ class Song < ActiveRecord::Base
 		def init
 			self.service_id 	||= get_service(self.url)
 			self.external_id 	||= get_external(self.url)
-			
-			if self.service_id == Service.find_by_name("YouTube").id
-				search_youtube(self.url)
-			elsif self.service_id == Service.find_by_name("Soundcloud").id
-				search_soundcloud(self.url)
-			end
+			find_artwork
 		end
 
 

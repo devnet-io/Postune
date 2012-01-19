@@ -7,25 +7,21 @@
 <table>
 	<tbody>
 		<tr>
-			<th>Position</th>
+			<th></th>
 			<th>ID</th> 
 			<th>User</th>
 			<th>Title</th>
 			<th>Artist</th>
 			<th>Album</th>
-			<th>URL</th>
-			<th>Artwork</th>
 		</tr>
 		<% @playlist_songs.each do |p_song| %>
 		<tr>
-			<td><%= p_song.position %></td>
+			<td><%= image_tag(p_song.song.service.icon) %></td>
 			<td><%= p_song.id %></td>
 			<td><%= p_song.song.user.name %></td>
 			<td><%= link_to p_song.song.title, song_path(p_song.song.id) %></td>
 			<td><%= p_song.song.artist %></td>
 			<td><%= p_song.song.album %></td>
-			<td><%= p_song.song.url %></td>
-			<td><%= p_song.song.artwork %></td>
 		</tr>
 		<% end %>
 	</tbody>
