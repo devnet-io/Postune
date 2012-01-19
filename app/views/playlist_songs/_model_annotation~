@@ -7,7 +7,7 @@
 		</tr>
 		<tr>
 			<td><strong>song_id</strong></td>
-			<td>integer</td>
+			<td>idnteger/td>
 			<td>A foreign key to a song</td>
 		</tr>
 		<tr>

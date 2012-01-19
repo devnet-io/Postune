@@ -13,7 +13,6 @@
 			<th>Artist</th>
 			<th>Album</th>
 			<th>URL</th>
-			<th>Artwork</th>
 		</tr>
 		<% @songs.each do |s| %>
 		<tr>
@@ -24,7 +23,6 @@
 			<td><%= s.artist %></td>
 			<td><%= s.album %></td>
 			<td><%= s.url %></td>
-			<td><%= s.artwork %></td>
 		</tr>
 		<% end %>
 	</tbody>	

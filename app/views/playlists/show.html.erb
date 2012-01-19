@@ -8,6 +8,7 @@
 	<tbody>
 		<tr>
 			<th></th>
+			<th></th>
 			<th>ID</th> 
 			<th>User</th>
 			<th>Title</th>
@@ -17,6 +18,7 @@
 		<% @playlist_songs.each do |p_song| %>
 		<tr>
 			<td><%= image_tag(p_song.song.service.icon) %></td>
+			<td><%= p_song.position %></td>
 			<td><%= p_song.id %></td>
 			<td><%= p_song.song.user.name %></td>
 			<td><%= link_to p_song.song.title, song_path(p_song.song.id) %></td>

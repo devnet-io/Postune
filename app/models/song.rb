@@ -1,3 +1,9 @@
+# TODO
+# - Make the external id match an id that is given by the api of the website instead of a split [DONE]
+#	- Clean up this code
+# - Fix the find artist method
+# - Make the search look for artist and albums in addition to title
+
 require 'net/http'
 require 'open-uri'
 
@@ -29,6 +35,8 @@ class Song < ActiveRecord::Base
 						
 	before_save :init
 	
+	@@results = Hash.new
+	
 	# Code modified from 'https://gist.github.com/948880#file_environment.rb'
 	# Validates the response code of a submitted url
 	def validate_url(submitted_url)
@@ -56,23 +64,37 @@ class Song < ActiveRecord::Base
 	# Search Soundcloud to get info using the external id
 	def search_soundcloud(query)
 		soundcloud_client_id = "33f255a6f2a015cd2bf4c80dc37ebcf7"
-		data = open("http://api.soundcloud.com/tracks.json?client_id=#{soundcloud_client_id}&q=#{self.external_id}&limit=1").read
-		result = JSON.parse(data)
-		self.artwork = (result[0]["artwork_url"].nil?) ? result[0]["user"]["avatar_url"] : result[0]["artwork_url"]
+		soundcloud_username = self.external_id.split("/")[0]
+		soundcloud_permalink = self.external_id.split("/")[1]
+		data = open("http://api.soundcloud.com/tracks.json?client_id=#{soundcloud_client_id}&q=#{soundcloud_permalink}").read
+		soundcloud_results = JSON.parse(data)
+		soundcloud_results.each do |result|
+			if result["user"]["permalink"] == soundcloud_username && result["permalink"] == soundcloud_permalink
+				@@results = result
+			end
+		end
+		self.external_id = @@results["id"]
 	end
 	
 	# Search Youtube to get info using the external id
 	def search_youtube(query)
 		data = open("http://gdata.youtube.com/feeds/api/videos?max-results=1&alt=json&q=#{query}").read
-		result = JSON.parse(data)
-		self.artwork = result["feed"]["entry"][0]["media$group"]["media$thumbnail"][0]["url"]
+		@@results = JSON.parse(data)
 	end
-	
+
 	def find_artwork
 		if self.service_id == Service.find_by_name("YouTube").id
-			search_youtube(self.url)
+			@@results["feed"]["entry"][0]["media$group"]["media$thumbnail"][0]["url"]
 		elsif self.service_id == Service.find_by_name("Soundcloud").id
-			search_soundcloud(self.url)
+			(@@results["artwork_url"].nil?) ? @@results["user"]["avatar_url"] : @@results["artwork_url"]
+		end
+	end
+	
+	def find_artist
+		if self.service_id == Service.find_by_name("YouTube").id
+			@@results["feed"]["entry"][0]["author"][0]["name"]
+		elsif self.service_id == Service.find_by_name("Soundcloud").id
+			@@results["user"]["username"]
 		end
 	end
 	
@@ -91,7 +113,15 @@ class Song < ActiveRecord::Base
 		def init
 			self.service_id 	||= get_service(self.url)
 			self.external_id 	||= get_external(self.url)
-			find_artwork
+			
+			if self.service_id == Service.find_by_name("YouTube").id
+				search_youtube(self.url)
+			elsif self.service_id == Service.find_by_name("Soundcloud").id
+				search_soundcloud(self.url)
+			end
+			
+			self.artwork 		||= find_artwork
+			self.artist			||= find_artist
 		end
 
 
