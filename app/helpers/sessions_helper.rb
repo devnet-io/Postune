@@ -25,7 +25,6 @@ module SessionsHelper
 	
 	def admin?
 		current_user.group.permission_level >= Group.find_by_name("Admin").permission_level 
-		
 	end
 
 	def deny_access
