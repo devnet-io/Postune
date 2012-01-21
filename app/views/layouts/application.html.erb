@@ -11,8 +11,19 @@
 <div id="container">
 	<header>
 		<div class="inner">
-			<%= image_tag("logo.png") %>	
-		</div>
+			<div class="left">
+				<%= link_to image_tag("logo.png"), root_path %>				
+			</div>
+			<div class="right">
+				<% if signed_in? %>
+					<%= link_to current_user.name, "#" %> | 
+					<%= link_to "Logout", logout_path %>
+				<% else %>		
+					<%= link_to "Register", "#" %> | 
+					<%= link_to "Login", login_path %>
+				<% end %>
+			</div>
+		</div> 
 	</header>
 	<section id="main">
 		<%= yield %>

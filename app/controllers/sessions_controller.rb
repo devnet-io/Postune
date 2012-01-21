@@ -2,7 +2,11 @@ class SessionsController < ApplicationController
 
 	def new
 		@title = "Login"
-		@user = User.new
+		if signed_in?
+			redirect_to current_user
+		else
+			@user = User.new
+		end
 	end
 	
 	def destroy
