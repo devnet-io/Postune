@@ -45,7 +45,6 @@ header {
 	min-width: 1080px;
  	background: #FFFFFF;
 	box-shadow: 1px 1px 15px #000000;
-	overflow: hidden;
 }
 
 label {
@@ -83,4 +82,15 @@ input[type="submit"] {
 
 .clear {
 	clear: both;
+}
+
+table {
+	table-layout: fixed;
+	width: 100%;
+	td {
+		padding: 5px;
+	}
+	tr:nth-child(odd) {
+		background: #EFEFEF;
+	}
 }

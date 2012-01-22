@@ -1,9 +1,9 @@
-<table>
+<table cellpadding="0px" cellspacing="0px">
 	<tbody>
 		<% playlist_songs.each do |playlist_song| %>
 			<tr>
-				<td><%= playlist_song.position %></td>
-				<td><%= image_tag playlist_song.song.service.icon %></td>
+				<td width="32px"><%= playlist_song.position %></td>
+				<td width="32px"><%= image_tag playlist_song.song.service.icon %></td>
 				<td><%= playlist_song.song.title %></td>
 				<td><%= playlist_song.song.artist %></td>
 				<td><%= playlist_song.song.album %></td>

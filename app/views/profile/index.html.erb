@@ -7,11 +7,7 @@
 		<% end %>
 	</ul>	
 </div>
+
 <div class="left" id="playlist-loaded">
 	<%= render 'profile/playlist_show', :playlist_songs => @first_playlist %>
-</div>
-<div class="clear">
-	<% if admin? %>
-		<%= link_to "Admin", admin_index_path %>
-	<% end %>
 </div>

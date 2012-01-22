@@ -5,7 +5,7 @@
 #user-playlist-wrapper {
 	width: 25%;
 	box-sizing: border-box;
-	
+	overflow: auto;
 	ul li {
 		padding: 3px 5px;
 		font-size: 14px;
@@ -17,7 +17,7 @@
 		}
 		
 		.selected {
-			color: red;
+			color: #1E90FF;
 		}
 	}
 }
@@ -25,6 +25,6 @@
 #playlist-loaded {
 	padding: 0px 15px;
 	width: 75%;
-	overflow: hidden;
+	overflow: auto;
 	box-sizing: border-box;
 }
