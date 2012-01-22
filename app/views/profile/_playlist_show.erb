@@ -1,0 +1,13 @@
+<table>
+	<tbody>
+		<% playlist_songs.each do |playlist_song| %>
+			<tr>
+				<td><%= playlist_song.position %></td>
+				<td><%= image_tag playlist_song.song.service.icon %></td>
+				<td><%= playlist_song.song.title %></td>
+				<td><%= playlist_song.song.artist %></td>
+				<td><%= playlist_song.song.album %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

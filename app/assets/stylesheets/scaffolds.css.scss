@@ -16,16 +16,17 @@ ul {
 header {
 	background: #666666;
 	margin: 0px 0px 25px 0px;
+	padding: 0px 25px;
 	
 	.inner {
 		padding: 15px 0px;
-		max-width: 1110px;
+		min-width: 1110px;
 		margin: auto;
 		overflow: hidden;
 	}
 	
 	.right {
-		margin: 15px 0px;
+		margin: 10px 0px;
 		padding: 10px 15px;
 		background: #FFFFFF;
 		box-shadow: 1px 1px 15px #333;
@@ -40,10 +41,11 @@ header {
 
 #main {
 	padding: 15px;
-	max-width: 1080px;
-	margin: auto;
-	background: #FFFFFF;
+	margin: 25px;
+	min-width: 1080px;
+ 	background: #FFFFFF;
 	box-shadow: 1px 1px 15px #000000;
+	overflow: hidden;
 }
 
 label {
@@ -77,4 +79,8 @@ input[type="submit"] {
 
 .right {
 	float: right;
+}
+
+.clear {
+	clear: both;
 }
