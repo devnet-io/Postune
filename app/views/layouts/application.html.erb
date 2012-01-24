@@ -3,6 +3,8 @@
 <head>
   <title><%= title %></title>
   <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "http://www.google.com/jsapi" %>
+  <%= javascript_tag "google.load('swfobject', '2.1');" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>

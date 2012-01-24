@@ -20,7 +20,7 @@ Postune::Application.routes.draw do
 	# -------------------
 	# Session Routes
 	# -------------------
-	resources :sessions, :only => [ :new, :create, :destroy ]	
+	resources :sessions, :only => [:new, :create, :destroy]	
 	
 	match '/login', :to => "sessions#new"
 	match '/logout', :to => "sessions#destroy"
@@ -29,6 +29,9 @@ Postune::Application.routes.draw do
 	# General User Routes
 	# -------------------
 	resources :profile
+	resources :player do
+		get :change, :on => :member
+	end
 	
 end
  

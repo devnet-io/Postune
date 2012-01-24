@@ -1,0 +1,18 @@
+<div class="left" id="user-playlist-wrapper">
+	<ul id="user-playlists">
+		<% current_user.playlist.each do |playlist| %>
+			<li class="playlist-<%= playlist.id %>">
+				<%= link_to playlist.name, player_path(playlist) %>
+			</li>
+		<% end %>
+	</ul>	
+</div>
+
+<div class="left" id="playlist-loaded">
+	<%= render 'player/playlist_show', :playlist_songs => @first_playlist %>
+</div>
+
+<div class="clear" id="music-player">
+	<div id="soundcloud-player"><div class="sc-player"></div></div>
+	<div id="youtube-player"></div>
+</div>

@@ -7,4 +7,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require youtube
+//= require player
 //= require profile
+//= require soundcloud.player.api
+//= require sc-player

@@ -25,12 +25,12 @@ class Song < ActiveRecord::Base
 	
 	# General validation for fields
 
-	validates :url,			:presence => true,
-							:format => { :with => url_regex }
-	validates :title,		:presence => true,
-							:length => { :maximum => 125 }
-	validates :artist,		:length => { :maximum => 75 }
-	validates :album, 		:length => { :maximum => 75 }
+	validates :url,					:presence => true,
+													:format => { :with => url_regex }
+	validates :title,				:presence => true,
+													:length => { :maximum => 125 }
+	validates :artist,			:length => { :maximum => 75 }
+	validates :album, 			:length => { :maximum => 75 }
 	validates_presence_of 	:user_id
 	
 	# Initiate before saving
@@ -88,7 +88,7 @@ class Song < ActiveRecord::Base
 		if self.service_id == Service.find_by_name("YouTube").id
 			@@results["feed"]["entry"][0]["media$group"]["media$thumbnail"][0]["url"]
 		elsif self.service_id == Service.find_by_name("Soundcloud").id
-			(@@results["artwork_url"].nil?) ? @@results["user"]["avatar_url"] : @@results["artwork_url"]
+			(@@results["artwork_url"].nil?) ? @@results["user"]["avatar_url"] : @@results["artwork_url"].gsub("large.jpg", "t300x300.jpg")
 		end
 	end
 	
