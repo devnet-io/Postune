@@ -19,30 +19,33 @@
 	overflow: auto;
 }
 .playlist-item {
-	padding: 5px 10px;
+	padding: 15px 10px;
 	border-bottom: solid 1px #DCDCDC;
 	box-shadow: 0px 0px 5px #DCDCDC;
 	text-shadow: 1px 1px 1px #FFF;
-	overflow: auto;
 	a {
 		color: #333333;
 	}
 }
+.playlist-list-song:hover {
+	cursor: pointer;
+}
 .title {
-	padding: 5px 10px;
+	padding: 15px 10px;
 	font-weight: bold;
+	font-size: 14px;
 }
 .selected {
 	background: #FFFFFF;
 }
-#playlist-loaded {
+#main-library-window {
 	width: 80%;
 	box-sizing: border-box;
-	overflow: hidden;
-	a {
-		color: #333333;
-		text-shadow: 1px 1px 1px #FFF;
-	}
+	overflow: auto;
+}
+#playlist-loaded a {
+	color: #333333;
+	text-shadow: 1px 1px 1px #FFF;
 }
 .playlist-playing {
 	font-weight: bold;

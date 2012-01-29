@@ -10,5 +10,6 @@
 //= require youtube
 //= require player
 //= require profile
-//= require soundcloud.player.api
-//= require sc-player
+//= require soundmanager2-jsmin
+//= require soundcloud.js
+

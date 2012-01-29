@@ -32,6 +32,6 @@ Postune::Application.routes.draw do
 	resources :player do
 		get :change, :on => :member
 	end
-	
+	resources :library
 end
  

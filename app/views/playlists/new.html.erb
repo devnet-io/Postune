@@ -5,4 +5,4 @@
 </div>
 <h1>New Playlist</h1>
 <%= render 'playlists/model_annotation' %>
-<%= render 'playlists/new_form' %>
+<%= render 'playlists/new_form', :url => user_playlists_path(@user), :remote => false %>

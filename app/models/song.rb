@@ -5,7 +5,7 @@
 #	- Add a way to check if the YouTube video is embeddable
 # - Fix the find artist method
 # - Make the search look for artist and albums in addition to title
-
+# - Modify the way the soundcloud ids work (Use a url as the id instead)
 require 'net/http'
 require 'open-uri'
 

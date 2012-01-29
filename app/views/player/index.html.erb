@@ -13,12 +13,13 @@
 		</ul>	
 	</div>
 
-	<div class="left" id="playlist-loaded">
-		<%= render 'player/playlist_show', :playlist_songs => @first_playlist %>
+	<div class="left" id="main-library-window">
+		<div id="playlist-loaded">
+			<%= render 'player/playlist_show', :playlist_songs => @first_playlist %>
+		</div>
 	</div>
 </div>
 <div class="clear" id="player">
-	<div id="soundcloud-player"><div class="sc-player"></div></div>
 	<div id="youtube-player"></div>
 </div>
 

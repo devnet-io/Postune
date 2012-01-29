@@ -21,12 +21,6 @@ function setVideoVolume() {
 	}
 }
 
-function playVideo() {
-	if (ytplayer) {
-		ytplayer.playVideo();
-	}
-}
-
 function pauseVideo() {
 	if (ytplayer) {
 		ytplayer.pauseVideo();

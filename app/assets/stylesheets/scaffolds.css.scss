@@ -62,12 +62,19 @@ input[type="submit"] {
 table {
 	table-layout: fixed;
 	width: 100%;
-	td {
+	td,th {
 		padding: 7px;
+	}
+	th {
+		text-align: left;
+		background: #F5F2DD;
 	}
 	tr:nth-child(odd) {
 		background: #EFEFEF;
 	}
+}
+.std-window {
+	padding: 25px;
 }
 #main {
 	min-width: 1080px;

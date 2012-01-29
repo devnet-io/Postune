@@ -1,9 +1,16 @@
 <table cellpadding="0px" cellspacing="0px">
 	<tbody>
+	<tr>
+		<th width="32px"></th>
+		<th width="32px"></th>
+		<th>Title</th>
+		<th>Artist</th>
+		<th>Album</th>
+	</tr>
 		<% playlist_songs.each do |playlist_song| %>
-			<tr id="<%= playlist_song.position %>">
+			<tr class="playlist-list-song" id="<%= playlist_song.position %>">
 				<td width="32px"><%= playlist_song.position %></td>
-				<td width="32px"><%= link_to (image_tag playlist_song.song.service.icon), playlist_song.song.url %></td>
+				<td width="32px"><%= image_tag playlist_song.song.service.icon %></td>
 				<td><%= link_to playlist_song.song.title, change_player_path(playlist_song.id), :class => "playlist-song" %></td>
 				<td><%= playlist_song.song.artist %></td>
 				<td><%= playlist_song.song.album %></td>

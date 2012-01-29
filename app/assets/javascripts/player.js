@@ -1,26 +1,29 @@
-var curPlaylist = 0,
-	curSong = 0;
-
+var cur = ({"id": 0, "position": 0, "playlist": 0, "url": "", "type": 0});
+	
 $(function() {
 	$(document).ready(function() {
 		calibrateMain();
 		$("#user-playlists a:first").parent().toggleClass("selected");
 	}); 
 	$("#user-playlists a").live("click", function(event) {
-		playlist_id = this.href.split("player/")[1]
+		if($("#playlist-loaded").length == 0) {
+			$("#main-library-window").html("<div id='playlist-loaded'></div>");
+			calibrateMain();
+		}
+		playlist_id = this.href.split("player/")[1];
 		$.get(this.href, function(playlist) {
 			$("#playlist-loaded").html(playlist);
-			if(curPlaylist == playlist_id) {
+			if(cur.playlist == playlist_id) {
 				$("#" + curSong).toggleClass("playlist-playing");
 			}
 		});
-		$(".selected").removeClass("selected");
+		clearSelected();
 		$(this).parent().toggleClass("selected");
 		event.preventDefault();
 	});
-	$(".playlist-song").live("click", function(event) {
-		$.get(this.href);
-		changeNowPlaying($(this).parent().parent());
+	$(".playlist-list-song").live("click", function(event) {
+		$.get($(this).find(".playlist-song").attr("href"));
+		changeNowPlaying($(this));
 		event.preventDefault();
 	});
 	$(".user-nav").live("click", function() {
@@ -39,21 +42,30 @@ function calibrateMain() {
 }
 
 function changeSong(id, url, type, playlist, position) {
-	storeNowPlaying(position, playlist);
+	play(type, url, id);
+	storeNowPlaying(position, playlist, url, id, type);
+}
+
+function storeNowPlaying(position, playlist, url, id, type) {
+	cur.playlist = playlist;
+	cur.position = position;
+	cur.url = url;
+	cur.id = id;
+	cur.type = type;
+}
+
+function play(type, url, id) {
+	if(cur.type == 1) {
+		ytplayer.stopVideo();
+	} else if(cur.type == 2) {
+		soundManager.stopAll();
+	}	
 	if(type == 1) {
 		ytplayer.cueVideoById(id);
 		ytplayer.playVideo();
 	} else if(type == 2) {
-		$("#soundcloud-player .sc-player").scPlayer({
-			links: [{url: url}],
-			autoPlay: true
-		});
-	}
-}
-
-function storeNowPlaying(position, playlist) {
-	curPlaylist = playlist;
-	curSong = position;
+		startSong(url);
+	}	
 }
 
 function clearNowPlaying() {
@@ -61,15 +73,19 @@ function clearNowPlaying() {
 	curSong = 0;
 }
 
+function clearSelected() {
+	$(".selected").removeClass("selected");
+}
+
 function changeNowPlaying(div) {
 	$(".playlist-playing").removeClass("playlist-playing");
 	div.toggleClass("playlist-playing");
 }
 
-function play() {
-	
+function changeWindow(div) {
+	$.get(div, function(html) {
+		clearSelected();
+		$("#main-library-window").html(html);
+	});
 }
 
-function pause() {
-	
-}
