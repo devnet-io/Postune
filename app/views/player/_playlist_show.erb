@@ -3,7 +3,7 @@
 		<% playlist_songs.each do |playlist_song| %>
 			<tr id="<%= playlist_song.position %>">
 				<td width="32px"><%= playlist_song.position %></td>
-				<td width="32px"><%= image_tag playlist_song.song.service.icon %></td>
+				<td width="32px"><%= link_to (image_tag playlist_song.song.service.icon), playlist_song.song.url %></td>
 				<td><%= link_to playlist_song.song.title, change_player_path(playlist_song.id), :class => "playlist-song" %></td>
 				<td><%= playlist_song.song.artist %></td>
 				<td><%= playlist_song.song.album %></td>

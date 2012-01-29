@@ -1,34 +1,57 @@
-// Place all the styles related to the player controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
+/*
+	Postune (C)
+	CSS
+	V 1.0
+	Ferris Tseng, Joseph Esposito, Jimin Jin
+	Player / Application
+*/
+#library-nav-wrapper {
+	overflow: hidden;
+}
 #user-playlist-wrapper {
-	width: 25%;
+	background: #F1F1F1;
+	border-right: #999999 solid 1px;
+	width: 20%;
 	box-sizing: border-box;
+	overflow: hidden;
+}
+#user-playlist-wrapper:hover {
 	overflow: auto;
-	ul li {
-		padding: 3px 5px;
-		font-size: 14px;
-		
-		a {
-			color: #000;
-			font-weight: bold;
-			text-decoration: none;
-		}
-		
-		.selected {
-			color: #1E90FF;
-		}
+}
+.playlist-item {
+	padding: 5px 10px;
+	border-bottom: solid 1px #DCDCDC;
+	box-shadow: 0px 0px 5px #DCDCDC;
+	text-shadow: 1px 1px 1px #FFF;
+	overflow: auto;
+	a {
+		color: #333333;
 	}
 }
-
-#playlist-loaded {
-	padding: 0px 15px;
-	width: 75%;
-	overflow: auto;
-	box-sizing: border-box;
+.title {
+	padding: 5px 10px;
+	font-weight: bold;
 }
-
+.selected {
+	background: #FFFFFF;
+}
+#playlist-loaded {
+	width: 80%;
+	box-sizing: border-box;
+	overflow: hidden;
+	a {
+		color: #333333;
+		text-shadow: 1px 1px 1px #FFF;
+	}
+}
 .playlist-playing {
 	font-weight: bold;
+}
+#player {
+	min-width: 1080px;
+	height: 50px;
+	background: #333;
+}
+#soundcloud-player, youtube-player {
+	display: none;
 }

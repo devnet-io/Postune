@@ -54,9 +54,9 @@ function onYouTubePlayerReady(playerId) {
 }
 
 function loadPlayer() {
-	var params = { allowScriptAccess: "always" };
-	var atts = { id: "ytPlayer" };
-	swfobject.embedSWF("http://www.youtube.com/apiplayer?" + "version=3&enablejsapi=1&playerapiid=player1", "youtube-player", "480", "295", "9", null, null, params, atts);
+	var params = {allowScriptAccess: "always"};
+	var atts = {id: "ytPlayer"};
+	swfobject.embedSWF("http://www.youtube.com/apiplayer?" + "version=3&enablejsapi=1&playerapiid=player1", "youtube-player", "1", "1", "9", null, null, params, atts);
 }
 
 function _run() {

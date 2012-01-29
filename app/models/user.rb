@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
 			self.group_id 				||= 1
 			self.salt 					||= make_salt("#{Time.now.utc}**")
 			self.activation_code 		||= generate_activation_code
-			self.password 				||= generate_encrypted_password
+			self.password = (should_validate?) ? generate_encrypted_password : self.password
 		end	
 			
 		def generate_activation_code

@@ -11,21 +11,32 @@
 <body>
 <div id="container">
 	<header>
-		<div class="inner">
-			<div class="left">
-				<%= link_to image_tag("logo.png"), root_path %>				
-			</div>
-			<div class="right">
-				<% if signed_in? %>
-					<%= link_to current_user.name, "#" %> | 
-					<%= link_to "Logout", logout_path %>
-				<% else %>		
-					<%= link_to "Register", "#" %> | 
-					<%= link_to "Login", login_path %>
-				<% end %>
-			</div>
-		</div> 
+		<div class="left">
+			<%= link_to image_tag("logo.png"), root_path %>
+		</div>
+		<div class="right">
+			<% if signed_in? %>
+				<%= link_to current_user.name, "#", :class => "user-nav" %>
+				<div id="user-hidden-menu">
+					<ul>
+						<li><%= link_to "Logout", logout_path %>/li>
+						<li><%= link_to "Music", player_index_path %></li>
+						<li><%= link_to "Profile", "#" %></li>
+					</ul>
+				</div>
+			<% else %>
+			
+			<% end %>
+		</div>
 	</header>
+	<% if signed_in? %>
+	<div id="actions">
+		<div class="right">
+			<a href="#" class="button">Add Song</a>
+			<a href="#" class="button">Add Playlist</a>
+		</div>
+	</div>
+	<% end %>
 	<section id="main">
 		<%= yield %>
 	</section>
