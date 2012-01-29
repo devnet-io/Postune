@@ -6,20 +6,8 @@ $(function() {
 		$("#user-playlists a:first").parent().toggleClass("selected");
 	}); 
 	$("#user-playlists a").live("click", function(event) {
-		if($("#playlist-loaded").length == 0) {
-			$("#main-library-window").html("<div id='playlist-loaded'></div>");
-			calibrateMain();
-		}
-		playlist_id = this.href.split("player/")[1];
-		$.get(this.href, function(playlist) {
-			$("#playlist-loaded").html(playlist);
-			if(cur.playlist == playlist_id) {
-				$("#" + curSong).toggleClass("playlist-playing");
-			}
-		});
-		clearSelected();
-		$(this).parent().toggleClass("selected");
 		event.preventDefault();
+		changeToPlaylist($(this));
 	});
 	$(".playlist-list-song").live("click", function(event) {
 		$.get($(this).find(".playlist-song").attr("href"));
@@ -89,3 +77,18 @@ function changeWindow(div) {
 	});
 }
 
+function changeToPlaylist(link) {
+	if($("#playlist-loaded").length == 0) {
+		$("#main-library-window").html("<div id='playlist-loaded'></div>");
+		calibrateMain();
+	}
+	playlist_id = link.attr("href").split("player/")[1];
+	$.get(link.attr("href"), function(playlist) {
+		$("#playlist-loaded").html(playlist);
+		if(cur.playlist == playlist_id) {
+			$("#" + curSong).toggleClass("playlist-playing");
+		}
+	});
+	clearSelected();
+	$(link).parent().toggleClass("selected");
+}

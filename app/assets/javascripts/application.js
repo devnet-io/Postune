@@ -10,6 +10,7 @@
 //= require youtube
 //= require player
 //= require profile
+//= require library
 //= require soundmanager2-jsmin
 //= require soundcloud.js
 
