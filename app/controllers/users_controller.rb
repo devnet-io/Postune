@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 		# Check if the password field is blank to see if validation should occur
 		@user.updating_password = (params[:user][:unencrypted_password].blank? && params[:user][:unencrypted_password_confirmation].blank?) ? false : true
 		
-		if @user.update_attributes(params[:user])
+		if @user.update_attributes!(params[:user])
 			flash[:success] = "Updated #{@user.name}'s settings."
 			redirect_to @user
 		else

@@ -30,6 +30,9 @@ Postune::Application.routes.draw do
 	# General User Routes
 	# -------------------
 	resources :profile
+	match '/activate', :to => "profile#activate"
+	match '/register', :to => "profile#new"
+
 	resources :player do
 		resources :change do 
 			get :song, :on => :member

@@ -14,10 +14,10 @@ class User < ActiveRecord::Base
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	
 	# Do some validation
-	validates :name,  :presence => true,
+	validates :name,  					:presence => true,
 										:length => { :within => 3..50 },
 										:uniqueness => { :case_sensitive => false }
-	validates :email,	:presence => true,
+	validates :email,					:presence => true,
 										:format => { :with => email_regex },
 										:uniqueness => { :case_sensitive => false }
 	validates :unencrypted_password,	:presence => true,
@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 	def self.authenticate(username, submitted_password)
 		user = User.find_by_name(username)
 		return nil if user.nil?
-		return user if (user.password ==  user.make_salt("#{user.salt}#{submitted_password}"))
+		return user if user.password == user.make_salt("#{user.salt}#{submitted_password}") && user.is_active == 1
 	end
 	
 	def self.search(query)

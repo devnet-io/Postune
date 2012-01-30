@@ -13,11 +13,11 @@ class PlaylistSongsController < ApplicationController
 		@new_song = Song.new(:title => params[:song][:title], :album => params[:song][:album], :artist => params[:song][:artist], :url => params[:song][:url], :user_id => @playlist.user.id)
 		
 		if @new_song.save
-			just_created = Song.where("#{:user_id} = #{@playlist.user.id} AND #{:url} = '#{params[:song][:url]}'").last
+#			just_created = Song.where("#{:user_id} = #{@playlist.user.id} AND #{:url} = '#{params[:song][:url]}'").last
 			last_playlist_song = PlaylistSong.where("#{:playlist_id} = #{params[:playlist_id]}").order("position asc").last
 			last_position = (last_playlist_song == nil) ? 0 : last_playlist_song.position
 			
-			@new_playlist_song = PlaylistSong.new(:song_id => just_created.id, :playlist_id => params[:playlist_id], :position => (last_position + 1))
+			@new_playlist_song = PlaylistSong.new(:song_id => @new_song.id, :playlist_id => params[:playlist_id], :position => (last_position + 1))
 			
 			if @new_playlist_song.save
 				flash[:notice] = "You have added a song!"
