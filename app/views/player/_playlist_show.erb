@@ -1,17 +1,22 @@
+<div class="actions-bar">
+	<div class="right">
+		<%= link_to "Add Song", "javascript:changeWindow('#{new_library_music_path(@playlist.id)}')", :class => "button" %></a>
+	</div>
+</div>
 <table cellpadding="0px" cellspacing="0px">
-	<tbody>
-	<tr>
-		<th width="32px"></th>
-		<th width="32px"></th>
-		<th>Title</th>
-		<th>Artist</th>
-		<th>Album</th>
-	</tr>
+	<tbody class="playlist-sortable">
+		<tr class="table-sort-disable">
+			<th width="32px"></th>
+			<th width="32px"></th>
+			<th>Title</th>
+			<th>Artist</th>
+			<th>Album</th>
+		</tr>
 		<% playlist_songs.each do |playlist_song| %>
-			<tr class="playlist-list-song" id="<%= playlist_song.position %>">
-				<td width="32px"><%= playlist_song.position %></td>
+			<tr class="playlist-list-song pos_<%= playlist_song.position %>" id="song_<%= playlist_song.id %>">
+				<td width="32px" class="position"><%= playlist_song.position %></td>
 				<td width="32px"><%= image_tag playlist_song.song.service.icon %></td>
-				<td><%= link_to playlist_song.song.title, change_player_path(playlist_song.id), :class => "playlist-song" %></td>
+				<td><%= link_to playlist_song.song.title, song_player_change_path(playlist_song.playlist.id, playlist_song.position), :class => "playlist-song" %></td>
 				<td><%= playlist_song.song.artist %></td>
 				<td><%= playlist_song.song.album %></td>
 			</tr>

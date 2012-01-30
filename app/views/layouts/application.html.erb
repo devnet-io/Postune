@@ -30,9 +30,8 @@
 		</div>
 	</header>
 	<% if signed_in? %>
-	<div id="actions">
+	<div class="actions-bar">
 		<div class="right">
-			<%= link_to "Add Song", "javascript:changeWindow(#{})", :class => "button" %></a>
 			<%= link_to "Add Playlist", "javascript:changeWindow('#{new_library_path}')", :class => "button" %></a>
 		</div>
 	</div>

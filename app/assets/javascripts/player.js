@@ -3,6 +3,7 @@ var cur = ({"id": 0, "position": 0, "playlist": 0, "url": "", "type": 0});
 $(function() {
 	$(document).ready(function() {
 		calibrateMain();
+		makeSortable();
 		$("#user-playlists a:first").parent().toggleClass("selected");
 	}); 
 	$("#user-playlists a").live("click", function(event) {
@@ -56,11 +57,6 @@ function play(type, url, id) {
 	}	
 }
 
-function clearNowPlaying() {
-	curPlaylist = 0;
-	curSong = 0;
-}
-
 function clearSelected() {
 	$(".selected").removeClass("selected");
 }
@@ -86,9 +82,20 @@ function changeToPlaylist(link) {
 	$.get(link.attr("href"), function(playlist) {
 		$("#playlist-loaded").html(playlist);
 		if(cur.playlist == playlist_id) {
-			$("#" + curSong).toggleClass("playlist-playing");
+			$(".pos_" + cur.position).toggleClass("playlist-playing");
 		}
+		makeSortable();
 	});
 	clearSelected();
 	$(link).parent().toggleClass("selected");
+}
+
+function makeSortable() {
+	$(".playlist-sortable").sortable({
+		items: "tr:not(.table-sort-disable)",
+		update: function() {
+			var p = $(".playlist-sortable").sortable("serialize");
+			$.post("sort", p);
+		}
+	});
 }
