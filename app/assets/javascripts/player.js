@@ -93,9 +93,11 @@ function changeToPlaylist(link) {
 function makeSortable() {
 	$(".playlist-sortable").sortable({
 		items: "tr:not(.table-sort-disable)",
+		axis: "y",
 		update: function() {
 			var p = $(".playlist-sortable").sortable("serialize");
-			$.post("sort", p);
+			$.post("sort", p, function() {
+			});
 		}
 	});
 }

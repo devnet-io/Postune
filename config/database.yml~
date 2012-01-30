@@ -4,21 +4,21 @@ development:
   host: localhost
   database: postune_development
   pool: 5
-  username: 
-  password: 
+  username: ferristseng
+  password: holidays
 
 test:
   adapter: postgresql
   encoding: utf8
   database: postune_test
   pool: 5
-  username: 
-  password: 
+  username: ferristseng
+  password: holidays
 
 production:
   adapter: postgresql
   encoding: utf8
   database: postune_production
   pool: 5
-  username: 
-  password: 
+  username: ferristseng
+  password: holidays

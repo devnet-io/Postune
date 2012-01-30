@@ -5,8 +5,12 @@ class PlayerController < ApplicationController
 
 	def index
 		@title = current_user.name
-		@playlist = current_user.playlist.first
-		@playlist_first = @playlist.playlist_song.order("position")
+		if current_user.playlist.count > 0
+			@playlist = current_user.playlist.first
+			@playlist_first = @playlist.playlist_song.order("position")
+		else
+			@playlist_first = nil
+		end
 	end
 
 	def show

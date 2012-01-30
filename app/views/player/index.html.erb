@@ -5,17 +5,21 @@
 		</ul>
 		<ul id="user-playlists">
 			<li class="title">Playlists</li>
-			<% current_user.playlist.each do |playlist| %>
-				<li id="playlist-<%= playlist.id %>" class="playlist-item">
-					<%= link_to playlist.name, player_path(playlist) %>
-				</li>
+			<% if !@playlist_first.nil? %>
+				<% current_user.playlist.each do |playlist| %>
+					<li id="playlist-<%= playlist.id %>" class="playlist-item">
+						<%= link_to playlist.name, player_path(playlist) %>
+					</li>
+				<% end %>
 			<% end %>
 		</ul>	
 	</div>
 
 	<div class="left" id="main-library-window">
 		<div id="playlist-loaded">
-			<%= render 'player/playlist_show', :playlist_songs => @playlist_first %>
+			<% if !@playlist_first.nil? %>
+				<%= render 'player/playlist_show', :playlist_songs => @playlist_first %>
+			<% end %>
 		</div>
 	</div>
 </div>
