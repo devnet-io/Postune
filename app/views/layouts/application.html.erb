@@ -30,13 +30,13 @@
 		</div>
 	</header>
 	<% if signed_in? %>
-	<div class="actions-bar">
+	<div class="actions-bar" id="upper-nav">
 		<div class="right">
 			<%= link_to "Add Playlist", "javascript:changeWindow('#{new_library_path}')", :class => "button" %></a>
 		</div>
 	</div>
 	<% end %>
-	<section id="main">
+	<section id="main" class="full">
 		<%= yield %>
 	</section>
 </div>

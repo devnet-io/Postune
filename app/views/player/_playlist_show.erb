@@ -1,6 +1,7 @@
 <div class="actions-bar">
 	<div class="right">
-		<%= link_to "Add Song", "javascript:changeWindow('#{new_library_music_path(@playlist.id)}')", :class => "button" %></a>
+		<%= link_to "Add Song", "javascript:changeWindow('#{new_library_music_path(@playlist)}')", :class => "button" %></a>
+		<%= link_to "Edit Playlist", "javascript:changeWindow('#')", :class => "button" %></a>
 	</div>
 </div>
 <table cellpadding="0px" cellspacing="0px">

@@ -14,6 +14,7 @@
 	width: 20%;
 	box-sizing: border-box;
 	overflow: auto;
+	min-width: 216px;
 }
 .playlist-item {
 	padding: 15px 10px;
@@ -39,6 +40,7 @@
 	width: 80%;
 	box-sizing: border-box;
 	overflow: auto;
+	min-width: 864px;
 }
 #playlist-loaded a {
 	color: #333333;

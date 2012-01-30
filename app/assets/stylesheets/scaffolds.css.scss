@@ -76,7 +76,7 @@ table {
 .std-window {
 	padding: 25px;
 }
-#main {
+.full {
 	min-width: 1080px;
 }
 /* 
@@ -124,6 +124,8 @@ header {
 	overflow: hidden;
 	padding: 10px 5px;
 	background: #F1F1F1;
-	min-width: 1070px;
 	border-bottom: #999999 solid 1px;
+}
+#upper-nav {
+	min-width: 1070px;
 }

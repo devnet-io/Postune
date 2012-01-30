@@ -5,7 +5,8 @@ class PlayerController < ApplicationController
 
 	def index
 		@title = current_user.name
-		@playlist = current_user.playlist.first.playlist_song.order("position")
+		@playlist = current_user.playlist.first
+		@playlist_first = @playlist.playlist_song.order("position")
 	end
 
 	def show
