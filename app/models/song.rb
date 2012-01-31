@@ -36,7 +36,7 @@ class Song < ActiveRecord::Base
 	# Initiate before saving
 						
 	before_save :init
-	after_commit :create_assoc_playlist_song
+	after_create :create_assoc_playlist_song
 
 	@@results = Hash.new
 	
@@ -93,11 +93,15 @@ class Song < ActiveRecord::Base
 		end
 	end
 
-	# Create an associated playlist song for the song
+	# Create an associated playlist song for the song, and also add it to the user's library playlist
 	def create_assoc_playlist_song
-		last_playlist_song = PlaylistSong.where("playlist_id = #{id}").order("position asc").last
+		last_playlist_song = PlaylistSong.where("playlist_id = #{playlist_id}").order("position").last
 		last_position = (last_playlist_song == nil) ? 0 : last_playlist_song.position	
 		PlaylistSong.create!(:song_id => id, :playlist_id => playlist_id, :position => (last_position + 1), :title => title, :artist => artist, :album => album)
+		library = Library.find_by_user_id!(user_id).playlist.id
+		last_library_song = PlaylistSong.where("playlist_id = #{library}").order("position").last
+		last_library_position = (last_library_song == nil) ? 0 : last_library_song.position
+		PlaylistSong.create!(:song_id => id, :playlist_id => library, :position => (last_library_position + 1), :title => title, :artist => artist, :album => album)
 	end
 			
 	# Allows to search for a song based on title

@@ -1,15 +1,17 @@
 <div id="library-nav-wrapper">
 	<div class="left" id="user-playlist-wrapper">
 		<ul>
-			<li class="playlist-item"><%= link_to "Library", library_index_path  %></li>
+			<li class="playlist-item"><%= link_to "Library", player_path(@library.playlist.id)  %></li>
 		</ul>
 		<ul id="user-playlists">
 			<li class="title">Playlists</li>
 			<% if !@playlist_first.nil? %>
 				<% current_user.playlist.each do |playlist| %>
+					<% if playlist != @library.playlist %>
 					<li id="playlist-<%= playlist.id %>" class="playlist-item">
 						<%= link_to playlist.name, player_path(playlist) %>
 					</li>
+					<% end %>
 				<% end %>
 			<% end %>
 		</ul>	

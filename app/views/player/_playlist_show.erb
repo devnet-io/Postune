@@ -1,17 +1,19 @@
+<% if @playlist != current_user.library.playlist %>
 <div class="actions-bar">
 	<div class="right">
 		<%= link_to "Add Song", "javascript:changeWindow('#{new_library_music_path(@playlist)}')", :class => "button" %></a>
 		<%= link_to "Edit Playlist", "javascript:changeWindow('#')", :class => "button" %></a>
 	</div>
 </div>
+<% end %>
 <table cellpadding="0px" cellspacing="0px">
 	<tbody class="playlist-sortable">
 		<tr class="table-sort-disable">
 			<th width="32px"></th>
 			<th width="32px"></th>
-			<th><%= sortable_column "title" %></th>
-			<th><%= sortable_column "artist" %></th>
-			<th><%= sortable_column "album" %></th>
+			<th><%= sortable_column "title", "player", "show", @playlist %></th>
+			<th><%= sortable_column "artist", "player", "show", @playlist %></th>
+			<th><%= sortable_column "album", "player", "show", @playlist %></th>
 		</tr>
 		<% songs.each do |playlist_song| %>
 			<tr class="playlist-list-song pos_<%= playlist_song.position %>" id="song_<%= playlist_song.id %>">

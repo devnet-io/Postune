@@ -7,9 +7,10 @@ class User < ActiveRecord::Base
 	belongs_to :group
 	
 	# Every user has playlists and songs
-	has_many :playlist, :dependent => :destroy
+	has_many :playlist, :dependent => :delete_all
 	has_many :song
-	
+	has_one :library, :dependent => :destroy
+
 	# Email Regex for validation
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	
@@ -27,7 +28,8 @@ class User < ActiveRecord::Base
 	
 	# Run the encryption method and fill out the other fields with default values						
 	before_save :init
-	
+	after_create :create_assoc_library
+
 	def self.authenticate(username, submitted_password)
 		user = User.find_by_name(username)
 		return nil if user.nil?
@@ -49,6 +51,12 @@ class User < ActiveRecord::Base
 	
 	def should_validate?
 		updating_password || new_record?
+	end	
+	
+	# Create an associated library playlist
+	def create_assoc_library
+		new_playlist = Playlist.create!(:name => "#{name}'s Library", :user_id => id)
+		Library.create!(:user_id => id, :playlist_id => new_playlist.id)
 	end	
 					
 	private 

@@ -4,7 +4,7 @@ $(function() {
 	$(document).ready(function() {
 		calibrateMain();
 		makeSortable();
-		$("#user-playlists a:first").parent().toggleClass("selected");
+		$(".playlist-item:first").toggleClass("selected");
 	}); 
 	$(".playlist-item a").live("click", function(event) {
 		event.preventDefault();
@@ -19,6 +19,13 @@ $(function() {
 		$("#user-hidden-menu").css("left", $(document).outerWidth() - $("#user-hidden-menu").outerWidth() - 10 + "px");
 		$("#user-hidden-menu").toggle();
 		$(".user-nav").toggleClass("user-nav-open");
+	});
+	$(".sortable_column").live("click", function(event) {
+		$.get($(this).attr("href"), function(playlist) {
+			$("#playlist-loaded").html(playlist);
+			makeSortable();
+		});
+		event.preventDefault();
 	});
 	$(window).resize(function() {
 		calibrateMain();

@@ -15,4 +15,5 @@ playlist_song	- links to a song and holds a position
 service		- info about the external websites that postune makes use of
 song		- a song that holds an id to an external website
 user		- a user
+library		- stores a users default playlist (created when user creates their account)
 
