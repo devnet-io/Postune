@@ -13,7 +13,7 @@
 			<th>Artist</th>
 			<th>Album</th>
 		</tr>
-		<% playlist_songs.each do |playlist_song| %>
+		<% songs.each do |playlist_song| %>
 			<tr class="playlist-list-song pos_<%= playlist_song.position %>" id="song_<%= playlist_song.id %>">
 				<td width="32px" class="position"><%= playlist_song.position %></td>
 				<td width="32px"><%= image_tag playlist_song.song.service.icon %></td>

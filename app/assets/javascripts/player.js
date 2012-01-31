@@ -6,7 +6,7 @@ $(function() {
 		makeSortable();
 		$("#user-playlists a:first").parent().toggleClass("selected");
 	}); 
-	$("#user-playlists a").live("click", function(event) {
+	$(".playlist-item a").live("click", function(event) {
 		event.preventDefault();
 		changeToPlaylist($(this));
 	});

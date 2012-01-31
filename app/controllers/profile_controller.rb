@@ -9,7 +9,7 @@ class ProfileController < ApplicationController
 	def new
 		@title = "Register"
 		if signed_in?
-			redirect_to profile_index_path
+			redirect_to player_index_path
 		else
 			@new_user = User.new
 		end

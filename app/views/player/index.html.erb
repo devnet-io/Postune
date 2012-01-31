@@ -1,7 +1,7 @@
 <div id="library-nav-wrapper">
 	<div class="left" id="user-playlist-wrapper">
 		<ul>
-			<li class="playlist-item"><%= link_to "Library", "#"  %></li>
+			<li class="playlist-item"><%= link_to "Library", library_index_path  %></li>
 		</ul>
 		<ul id="user-playlists">
 			<li class="title">Playlists</li>
@@ -18,7 +18,7 @@
 	<div class="left" id="main-library-window">
 		<div id="playlist-loaded">
 			<% if !@playlist_first.nil? %>
-				<%= render 'player/playlist_show', :playlist_songs => @playlist_first %>
+				<%= render 'player/playlist_show', :songs => @playlist_first %>
 			<% end %>
 		</div>
 	</div>
