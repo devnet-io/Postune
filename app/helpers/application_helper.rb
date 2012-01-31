@@ -9,4 +9,11 @@ module ApplicationHelper
 		end
 	end
 
+	def sortable_column(column, title = nil)
+		title ||= column.titleize		
+		class_sort = column == sort_column ? "sortable_column #{sort_direction}" : nil
+		direction  = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+		link_to title, { :sort => column, :dir => direction}, :class => class_sort
+	end
+
 end

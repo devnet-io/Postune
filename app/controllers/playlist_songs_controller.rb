@@ -10,23 +10,11 @@ class PlaylistSongsController < ApplicationController
 	end
 
 	def create
-		@new_song = Song.new(:title => params[:song][:title], :album => params[:song][:album], :artist => params[:song][:artist], :url => params[:song][:url], :user_id => @playlist.user.id)
+		@new_song = Song.new(:title => params[:song][:title], :album => params[:song][:album], :artist => params[:song][:artist], :url => params[:song][:url], :user_id => @playlist.user.id, :playlist_id => @playlist.id)
 		
 		if @new_song.save
-#			just_created = Song.where("#{:user_id} = #{@playlist.user.id} AND #{:url} = '#{params[:song][:url]}'").last
-			last_playlist_song = PlaylistSong.where("#{:playlist_id} = #{params[:playlist_id]}").order("position asc").last
-			last_position = (last_playlist_song == nil) ? 0 : last_playlist_song.position
-			
-			@new_playlist_song = PlaylistSong.new(:song_id => @new_song.id, :playlist_id => params[:playlist_id], :position => (last_position + 1))
-			
-			if @new_playlist_song.save
-				flash[:notice] = "You have added a song!"
-				redirect_to @playlist
-			else
-				@title = "New Playlist Song"
-				render :action => 'new'
-			end
-			
+			flash[:notice] = "You have added a song!"
+			redirect_to @playlist
 		else
 			@title = "New Playlist Song"
 			render :action => 'new'

@@ -34,10 +34,6 @@ module SessionsHelper
 	def deny_limited_access
 		redirect_to root_path unless admin?
 	end
-	
-	def correct_user
-		# Is the profile user id the same as the current user
-	end
 
 	private
 	

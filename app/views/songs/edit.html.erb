@@ -1,7 +1,7 @@
 <div class="breadcrumbs">
 	<%= link_to "Admin", admin_index_path %> >
 	<%= link_to "Songs", songs_path %> >
-	<%= link_to "Edit '#{@song.title}'", edit_song_path(@song.id) %>
+	<%= link_to "Edit Song", edit_song_path(@song.id) %>
 </div>
 <h1>Edit <%= @song.title %></h1>
 <%= render 'songs/edit_form' %>

@@ -21,9 +21,9 @@
 			<td class="song-position"><%= p_song.position %></td>
 			<td><%= p_song.id %></td>
 			<td><%= p_song.song.user.name %></td>
-			<td><%= link_to p_song.song.title, song_path(p_song.song.id) %></td>
-			<td><%= p_song.song.artist %></td>
-			<td><%= p_song.song.album %></td>
+			<td><%= link_to p_song.title, song_path(p_song.song.id) %></td>
+			<td><%= p_song.artist %></td>
+			<td><%= p_song.album %></td>
 		</tr>
 		<% end %>
 	</tbody>

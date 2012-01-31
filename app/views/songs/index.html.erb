@@ -9,9 +9,6 @@
 			<th></th>
 			<th>ID</th> 
 			<th>User</th>
-			<th>Title</th>
-			<th>Artist</th>
-			<th>Album</th>
 			<th>URL</th>
 		</tr>
 		<% @songs.each do |s| %>
@@ -19,10 +16,7 @@
 			<td><%= image_tag(s.service.icon) %></td>
 			<td><%= s.id %></td>
 			<td><%= link_to s.user.name, user_path(s.user_id) %></td>
-			<td><%= link_to s.title, song_path(s.id) %></td>
-			<td><%= s.artist %></td>
-			<td><%= s.album %></td>
-			<td><%= s.url %></td>
+			<td><%= link_to s.url, song_path(s.id) %></td>
 		</tr>
 		<% end %>
 	</tbody>	

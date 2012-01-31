@@ -9,17 +9,17 @@
 		<tr class="table-sort-disable">
 			<th width="32px"></th>
 			<th width="32px"></th>
-			<th>Title</th>
-			<th>Artist</th>
-			<th>Album</th>
+			<th><%= sortable_column "title" %></th>
+			<th><%= sortable_column "artist" %></th>
+			<th><%= sortable_column "album" %></th>
 		</tr>
 		<% songs.each do |playlist_song| %>
 			<tr class="playlist-list-song pos_<%= playlist_song.position %>" id="song_<%= playlist_song.id %>">
 				<td width="32px" class="position"><%= playlist_song.position %></td>
 				<td width="32px"><%= image_tag playlist_song.song.service.icon %></td>
-				<td><%= link_to playlist_song.song.title, song_player_change_path(playlist_song.playlist.id, playlist_song.position), :class => "playlist-song" %></td>
-				<td><%= playlist_song.song.artist %></td>
-				<td><%= playlist_song.song.album %></td>
+				<td><%= link_to playlist_song.title, song_player_change_path(playlist_song.playlist.id, playlist_song.position), :class => "playlist-song" %></td>
+				<td><%= playlist_song.artist %></td>
+				<td><%= playlist_song.album %></td>
 			</tr>
 		<% end %>
 	</tbody>

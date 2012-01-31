@@ -10,13 +10,13 @@ require 'net/http'
 require 'open-uri'
 
 class Song < ActiveRecord::Base
-
-	attr_accessible :title, :artist, :album, :url, :type, :user_id, :artwork, :service_id, :external_id
+	attr_accessor :title, :artist, :album, :playlist_id
+	attr_accessible :url, :type, :user_id, :artwork, :service_id, :external_id, :title, :artist, :album, :playlist_id
 
 	belongs_to :user
 	belongs_to :service
 	
-	has_many :playlist_song, :dependent => :destroy
+	has_many :playlist_song, :dependent => :delete_all
 	
 	# Regular Expression for validating an URL/URI
 	# chrisbloom7 from 'https://gist.github.com/948880#file_environment.rb'
@@ -25,18 +25,19 @@ class Song < ActiveRecord::Base
 	
 	# General validation for fields
 
-	validates :url,					:presence => true,
-													:format => { :with => url_regex }
-	validates :title,				:presence => true,
-													:length => { :maximum => 125 }
+	validates :url,				:presence => true,
+								:format => { :with => url_regex }
+	validates :title,			:presence => true,
+								:length => { :maximum => 125 }
 	validates :artist,			:length => { :maximum => 75 }
 	validates :album, 			:length => { :maximum => 75 }
-	validates_presence_of 	:user_id
+	validates_presence_of 		:user_id
 	
 	# Initiate before saving
 						
 	before_save :init
-	
+	after_commit :create_assoc_playlist_song
+
 	@@results = Hash.new
 	
 	# Code modified from 'https://gist.github.com/948880#file_environment.rb'
@@ -91,24 +92,23 @@ class Song < ActiveRecord::Base
 			(@@results["artwork_url"].nil?) ? @@results["user"]["avatar_url"] : @@results["artwork_url"].gsub("large.jpg", "t300x300.jpg")
 		end
 	end
-	
-	def find_artist
-		if self.service_id == Service.find_by_name("YouTube").id
-			@@results["feed"]["entry"][0]["author"][0]["name"]["$t"]
-		elsif self.service_id == Service.find_by_name("Soundcloud").id
-			@@results["user"]["username"]
-		end
+
+	# Create an associated playlist song for the song
+	def create_assoc_playlist_song
+		last_playlist_song = PlaylistSong.where("playlist_id = #{id}").order("position asc").last
+		last_position = (last_playlist_song == nil) ? 0 : last_playlist_song.position	
+		PlaylistSong.create!(:song_id => id, :playlist_id => playlist_id, :position => (last_position + 1), :title => title, :artist => artist, :album => album)
 	end
-	
+			
 	# Allows to search for a song based on title
 	def self.search(query)
 		if query
-			where("title LIKE ?", "%#{query}%") 
+			where("url LIKE ?", "%#{query}%") 
 		else 
 			scoped
 		end
 	end
-	
+
 	private
 	
 		# Get the proper service and further validate the URL and extract the external ID
@@ -122,10 +122,7 @@ class Song < ActiveRecord::Base
 				search_soundcloud(self.url)
 			end
 			
-			self.artwork 		||= find_artwork
-			
-			self.artist = (self.artist.empty?) ? find_artist : self.artist
-		end
+			self.artwork 		||= find_artwork		end
 
 
 end

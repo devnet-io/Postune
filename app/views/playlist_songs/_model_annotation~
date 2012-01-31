@@ -30,5 +30,20 @@
 			<td>datetime</td>
 			<td>The last time the playlist song's record was updated</td>
 		</tr>
+		<tr>
+			<td><strong>Title<strong></td>
+			<td>string</td>
+			<td>The title of the song</td>
+		</tr>
+		<tr>
+			<td><strong>Artist<strong></td>
+			<td>string</td>
+			<td>The song artist</td>
+		</tr>
+		<tr>
+			<td><strong>Album<strong></td>
+			<td>string</td>
+			<td>The song album</td>
+		</tr>
 	</tbody>	
 </table>

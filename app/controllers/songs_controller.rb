@@ -15,7 +15,7 @@ class SongsController < ApplicationController
 	end
 	
 	def edit
-		@title = "Edit '#{@song.title}'"
+		@title = "Edit Song"
 	end
 	
 	def update

@@ -10,12 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120110043641) do
+ActiveRecord::Schema.define(:version => 20120131182142) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.integer  "permission_level"
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "libraries", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "playlist_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -26,6 +33,9 @@ ActiveRecord::Schema.define(:version => 20120110043641) do
     t.integer  "playlist_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
+    t.string   "artist"
+    t.string   "album"
   end
 
   create_table "playlists", :force => true do |t|
@@ -44,9 +54,6 @@ ActiveRecord::Schema.define(:version => 20120110043641) do
   end
 
   create_table "songs", :force => true do |t|
-    t.string   "title"
-    t.string   "artist"
-    t.string   "album"
     t.string   "url"
     t.integer  "service_id"
     t.integer  "user_id"

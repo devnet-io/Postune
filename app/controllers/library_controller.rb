@@ -10,8 +10,7 @@ class LibraryController < ApplicationController
 	def create
 		@new_playlist = Playlist.new(:name => params[:playlist][:name], :user_id => current_user.id)
 		if @new_playlist.save
-			just_created = Playlist.where("#{:user_id} = #{current_user.id}").last
-			render 	:text => "appendPlaylists(#{just_created.id}, '#{player_path(just_created)}', '#{just_created.name}')",
+			render 	:text => "appendPlaylists(#{@new_playlist.id}, '#{player_path(@new_playlist)}', '#{@new_playlist.name}')",
 					:content_type => "text/javascript"
 		else
 			render 	:new, :layout => false

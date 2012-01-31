@@ -29,7 +29,7 @@ class ProfileController < ApplicationController
 		
 	def activate
 		user = User.find_by_activation_code!(params[:code])
-		if user.update_attributes!(:is_active => 1) 
+		if user.activation_code == 0 && user.update_attributes!(:is_active => 1)
 			sign_in(user)
 			redirect_to root_path
 		else

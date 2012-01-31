@@ -50,7 +50,7 @@ class PlaylistsController < ApplicationController
 		i = 1
 		songs.each do |id|
 			PlaylistSong.find(id).update_attributes(:position => i)
-			i+=1
+			i += 1
 		end
 	end
 
