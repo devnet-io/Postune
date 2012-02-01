@@ -8,6 +8,8 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require youtube
+//= require player_load
+//= require player_gui
 //= require player
 //= require profile
 //= require library

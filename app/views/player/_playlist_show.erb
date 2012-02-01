@@ -19,10 +19,17 @@
 			<tr class="playlist-list-song pos_<%= playlist_song.position %>" id="song_<%= playlist_song.id %>">
 				<td width="32px" class="position"><%= playlist_song.position %></td>
 				<td width="32px"><%= image_tag playlist_song.song.service.icon %></td>
-				<td><%= link_to playlist_song.title, song_player_change_path(playlist_song.playlist.id, playlist_song.position), :class => "playlist-song" %></td>
+				<td><%= link_to playlist_song.title, change_path(@playlist, :song => playlist_song.position), :class => "playlist-song" %></td>
 				<td><%= playlist_song.artist %></td>
 				<td><%= playlist_song.album %></td>
 			</tr>
 		<% end %>
 	</tbody>
 </table>
+<a href="#" id="next-song">Next Song</a>
+<%= @sort %> | <%= @dir %>
+<script>
+	$("#next-song").live("click", function() {
+		$.get("/change/" + cur.playlist + "?song=" + (cur.position + 1));
+	});
+</script>

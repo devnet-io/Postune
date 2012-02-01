@@ -33,11 +33,9 @@ Postune::Application.routes.draw do
 	match '/activate', :to => "profile#activate"
 	match '/register', :to => "profile#new"
 
-	resources :player do
-		resources :change do 
-			get :song, :on => :member
-		end
-	end
+	resources :player
+	resources :change 
+	
 	resources :library do
 		resources :music
 	end

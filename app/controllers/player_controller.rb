@@ -1,6 +1,7 @@
 class PlayerController < ApplicationController
 	helper_method :sort_column, :sort_direction
 	before_filter :find_playlist, :is_user?, :find_library, :only => [:show]
+	before_filter :set_sort_dir, :only => [:show, :index]
 	before_filter :find_library, :only => [:index]
 	before_filter :deny_access
 
@@ -29,6 +30,11 @@ class PlayerController < ApplicationController
 			(params[:dir] == "asc" || params[:dir] == "desc") ? params[:dir] : "asc"	
 		end
 
+		def set_sort_dir
+			@sort = sort_column
+			@dir = sort_direction
+		end
+			
 		def find_playlist
 			@playlist = Playlist.find(params[:id])
 		end
