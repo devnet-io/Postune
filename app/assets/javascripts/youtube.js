@@ -7,6 +7,11 @@ function onPlayerError(errorCode) {
 }
 
 function onPlayerStateChange(newState) {
+	if(newState == 0) {
+		nextSong();
+	} else if(newState == 1) {
+		
+	}
 }
 
 function updatePlayerInfo() {

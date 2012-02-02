@@ -44,17 +44,34 @@ function stopAll() {
 		scStopAll();
 	}		
 }
+/*
+ * Change to next song
+ */
+function nextSong() {
+	for(var i = 0; i < songs.length; i++) {
+		if(cur.position == songs[i].position) {
+			$.get("/change/" + songs[i+1].playlist_id + "?song=" + songs[i+1].position);
+			break;
+		}
+	}
+}
+/*
+ * Change to previous song
+ */
+function previousSong() {
+	for(var i = 0; i < songs.length; i++) {
+		if(cur.position == songs[i].position) {
+			$.get("/change/" + songs[i-1].playlist_id + "?song=" + songs[i-1].position);
+			break;
+		}
+	}
+}
 
 /*
  * Event Handlers for the Music Player
  */
  $(function() {
  	$("#next-song").live("click", function() {
-		for(var i = 0; i < songs.length; i++) {
-			if(cur.position == songs[i].position) {
-				$.get("/change/" + songs[i+1].playlist_id + "?song=" + songs[i+1].position);
-				break;
-			}
-		}
+		
 	});
  });

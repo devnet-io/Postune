@@ -16,6 +16,9 @@ function scStartSong(url) {
 			id: 'track_' + track.id,
 			url: url,
 			autoPlay: true,
+			onfinish: function() {
+				nextSong();
+			}
 		});	
 	});
 };
