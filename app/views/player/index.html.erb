@@ -1,7 +1,7 @@
 <div id="library-nav-wrapper">
 	<div class="left" id="user-playlist-wrapper">
 		<ul>
-			<li class="playlist-item"><%= link_to "Library", player_path(@library.playlist.id)  %></li>
+			<li class="playlist-item"><%= link_to "Library", player_path(@library.playlist.id), :remote => true  %></li>
 		</ul>
 		<ul id="user-playlists">
 			<li class="title">Playlists</li>
@@ -9,7 +9,7 @@
 				<% current_user.playlist.each do |playlist| %>
 					<% if playlist != @library.playlist %>
 					<li id="playlist-<%= playlist.id %>" class="playlist-item">
-						<%= link_to playlist.name, player_path(playlist) %>
+						<%= link_to playlist.name, player_path(playlist), :remote => true %>
 					</li>
 					<% end %>
 				<% end %>
@@ -19,9 +19,7 @@
 
 	<div class="left" id="main-library-window">
 		<div id="playlist-loaded">
-			<% if !@playlist_first.nil? %>
-				<%= render 'player/playlist_show', :songs => @playlist_first %>
-			<% end %>
+
 		</div>
 	</div>
 </div>

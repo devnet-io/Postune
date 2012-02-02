@@ -1,0 +1,18 @@
+if($("#playlist-loaded").length == 0) {
+	$("#main-library-window").html("<div id='playlist-loaded'></div>");
+	calibrateMain();
+}
+
+$("#playlist-loaded").html("<%= escape_javascript(render 'player/playlist_show', :songs => @playlist_songs) %>");
+
+if(cur.playlist == <%= @playlist.id %> || cur.playlist == null) {
+	$(".pos_" + cur.position).toggleClass("playlist-playing");
+	songs = $.parseJSON("<%= escape_javascript(@json).html_safe %>");
+}
+
+if(!<%= @sorted %>) {
+	makeSortable();	
+}
+
+clearSelected();
+$("#playlist-" + <%= @playlist.id %>).toggleClass("selected");	

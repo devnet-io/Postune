@@ -1,15 +1,15 @@
 <% if @playlist != current_user.library.playlist %>
 <div class="actions-bar">
 	<div class="right">
-		<%= link_to "Add Song", "javascript:changeWindow('#{new_library_music_path(@playlist)}')", :class => "button" %></a>
-		<%= link_to "Edit Playlist", "javascript:changeWindow('#')", :class => "button" %></a>
+		<%= link_to "Add Song", new_library_music_path(@playlist), :class => "button", :remote => true %></a>
+		<%= link_to "Edit Playlist", edit_library_music_path(@playlist), :class => "button", :remote => true %></a>
 	</div>
 </div>
 <% end %>
 <table cellpadding="0px" cellspacing="0px">
 	<tbody class="playlist-sortable">
 		<tr class="table-sort-disable">
-			<th width="32px"></th>
+			<th width="32px"><%= sortable_column "position", "player", "show", @playlist, "#" %></th>
 			<th width="32px"></th>
 			<th><%= sortable_column "title", "player", "show", @playlist %></th>
 			<th><%= sortable_column "artist", "player", "show", @playlist %></th>
@@ -19,7 +19,7 @@
 			<tr class="playlist-list-song pos_<%= playlist_song.position %>" id="song_<%= playlist_song.id %>">
 				<td width="32px" class="position"><%= playlist_song.position %></td>
 				<td width="32px"><%= image_tag playlist_song.song.service.icon %></td>
-				<td><%= link_to playlist_song.title, change_path(@playlist, :song => playlist_song.position), :class => "playlist-song" %></td>
+				<td><%= link_to playlist_song.title, change_path(@playlist, :song => playlist_song.position), :class => "playlist-song", :remote => true, :method => 'get' %></td>
 				<td><%= playlist_song.artist %></td>
 				<td><%= playlist_song.album %></td>
 			</tr>
@@ -28,8 +28,3 @@
 </table>
 <a href="#" id="next-song">Next Song</a>
 <%= @sort %> | <%= @dir %>
-<script>
-	$("#next-song").live("click", function() {
-		$.get("/change/" + cur.playlist + "?song=" + (cur.position + 1));
-	});
-</script>

@@ -17,7 +17,8 @@ class PlayerController < ApplicationController
 
 	def show
 		@playlist_songs = @playlist.playlist_song.order("#{sort_column} #{sort_direction}")
-		render :show, :layout => false
+		@json = ActiveSupport::JSON.encode(@playlist_songs)
+		@sorted = is_sorted?
 	end	
 
 	private
@@ -45,6 +46,10 @@ class PlayerController < ApplicationController
 
 		def is_user?
 			current_user == @playlist.user
+		end
+
+		def is_sorted?
+			return sort_column != "position"
 		end
 
 end

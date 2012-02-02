@@ -6,10 +6,9 @@ class MusicController < ApplicationController
 	def new
 		@new_song = Song.new
 		@playlist = Playlist.find(params[:library_id])
-		render :new, :layout=> false
 	end
 	
-	def create 
+	def create
 		@new_song = Song.new(:title => params[:song][:title], :album => params[:song][:album], :artist => params[:song][:artist], :url => params[:song][:url], :user_id => current_user.id, :playlist_id => @playlist.id)
 		
 		if @new_song.save

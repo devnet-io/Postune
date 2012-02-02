@@ -5,13 +5,16 @@
  * Music player application javascript
  * Version 1.0
  */
-
-
+/*
+ * Changes to a song with parameters
+ */
 function changeSong(id, url, type, playlist, position) {
 	play(type, url, id);
 	storeNowPlaying(position, playlist, url, id, type);
 }
-
+/*
+ * Stores information about song in javascript variable
+ */
 function storeNowPlaying(position, playlist, url, id, type) {
 	cur.playlist = playlist;
 	cur.position = position;
@@ -19,24 +22,39 @@ function storeNowPlaying(position, playlist, url, id, type) {
 	cur.id = id;
 	cur.type = type;
 }
-
+/*
+ * Plays a song
+ */
 function play(type, url, id) {
-	if(cur.type == 1) {
-		ytplayer.stopVideo();
-	} else if(cur.type == 2) {
-		soundManager.stopAll();
-	}	
+	stopAll();
 	if(type == 1) {
 		ytplayer.cueVideoById(id);
 		ytplayer.playVideo();
 	} else if(type == 2) {
-		startSong(url);
+		scStartSong(url);
 	}	
 }
-
-
-function changeNowPlaying(div) {
-	$(".playlist-playing").removeClass("playlist-playing");
-	div.toggleClass("playlist-playing");
+/*
+ * Stops all currently playing music
+ */
+function stopAll() {
+	if(cur.type == 1) {
+		ytplayer.stopVideo();
+	} else if(cur.type == 2) {
+		scStopAll();
+	}		
 }
 
+/*
+ * Event Handlers for the Music Player
+ */
+ $(function() {
+ 	$("#next-song").live("click", function() {
+		for(var i = 0; i < songs.length; i++) {
+			if(cur.position == songs[i].position) {
+				$.get("/change/" + songs[i+1].playlist_id + "?song=" + songs[i+1].position);
+				break;
+			}
+		}
+	});
+ });

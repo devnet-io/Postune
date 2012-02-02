@@ -32,7 +32,7 @@
 	<% if signed_in? %>
 	<div class="actions-bar" id="upper-nav">
 		<div class="right">
-			<%= link_to "Add Playlist", "javascript:changeWindow('#{new_library_path}')", :class => "button" %></a>
+			<%= link_to "Add Playlist", new_library_path, :class => "button", :remote => true %></a>
 		</div>
 	</div>
 	<% end %>

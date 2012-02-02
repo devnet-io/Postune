@@ -7,10 +7,7 @@ soundManager.useHighPerformance = true;
 soundManager.wmode = 'transparent';
 soundManager.useFastPolling = true;
 
-$(function() {
-});
-
-function startSong(url) {
+function scStartSong(url) {
 	$.getJSON('http://api.soundcloud.com/resolve?url=' + url + '&format=json&consumer_key=' + consumerkey + '&callback=?', function(track) {
 		url = track.stream_url;		
 		(url.indexOf("secret_token") == -1) ? url = url + '?' : url = url + '&';
@@ -22,3 +19,7 @@ function startSong(url) {
 		});	
 	});
 };
+
+function scStopSong() {
+	soundManager.stopAll();
+}

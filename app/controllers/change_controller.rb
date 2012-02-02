@@ -3,9 +3,7 @@ class ChangeController < ApplicationController
 	before_filter :find_playlist_song, :only => [:show]
 	before_filter :deny_access
 	
-	def show 
-		render 	:text => "changeSong('#{@playlist_song.song.external_id}', '#{@playlist_song.song.url}', #{@playlist_song.song.service.id}, #{@playlist_song.playlist.id}, #{@playlist_song.position})",
-				:content_type => "text/javascript"	
+	def show
 	end
 	
 	private 
