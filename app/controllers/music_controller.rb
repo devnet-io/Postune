@@ -19,8 +19,7 @@ class MusicController < ApplicationController
 			render 	:text => "alert('Success')",
 					:content_type => "text/javascript"
 		else
-			render 	:text => "alert('Failed to Save')",
-					:content_type => "text/javascript"
+			render 'new'
 		end
 	end
 

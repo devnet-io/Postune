@@ -23,6 +23,6 @@ function scStartSong(url) {
 	});
 };
 
-function scStopSong() {
+function scStopAll() {
 	soundManager.stopAll();
 }
