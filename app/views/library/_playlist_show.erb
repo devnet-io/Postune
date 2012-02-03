@@ -1,0 +1,38 @@
+<% if @playlist != current_user.library.playlist %>
+	<div class="actions-bar">
+		<div class="right">
+			<%= link_to "Add Song", new_library_music_path(@playlist.id), :class => "button", :remote => true %></a>
+			<%= link_to "Edit Playlist", edit_library_path(@playlist.id), :class => "button", :remote => true %></a>
+			<%= link_to "Delete Playlist", library_music_path(@playlist.id), 
+				:method => :delete, 
+				:class => "button", 
+				:confirm => "Are you sure you want to delete #{@playlist.name}?", 
+				:title => "Delete #{@playlist.name}?" 
+			%>
+		</div>
+	</div>
+<% end %>
+<table cellpadding="0px" cellspacing="0px">
+	<tbody class="playlist-sortable">
+		<tr class="table-sort-disable">
+			<th width="32px"><%= sortable_column "position", "library", "show", @playlist, "#" %></th>
+			<th width="32px"></th>
+			<th><%= sortable_column "title", "library", "show", @playlist %></th>
+			<th><%= sortable_column "artist", "library", "show", @playlist %></th>
+			<th><%= sortable_column "album", "library", "show", @playlist %></th>
+		</tr>
+		<% if !songs.nil? %>
+			<% songs.each do |playlist_song| %>
+				<tr class="playlist-list-song pos_<%= playlist_song.position %>" id="song_<%= playlist_song.id %>">
+					<td width="32px" class="position"><%= playlist_song.position %></td>
+					<td width="32px"><%= image_tag playlist_song.song.service.icon %></td>
+					<td><%= link_to playlist_song.title, change_path(@playlist, :song => playlist_song.position), :class => "playlist-song", :remote => true, :method => 'get' %></td>
+					<td><%= playlist_song.artist %></td>
+					<td><%= playlist_song.album %></td>
+				</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>
+<a href="#" id="next-song">Next Song</a>
+<%= @sort %> | <%= @dir %>

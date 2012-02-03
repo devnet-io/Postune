@@ -1,6 +1,6 @@
 Postune::Application.routes.draw do
 
-	root :to => "player#index" 
+	root :to => "library#index" 
 
 	# -------------------
 	# Admin Routes

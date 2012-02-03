@@ -1,0 +1,8 @@
+/* Make a playlist-loaded div if it doesn't aleady exist */
+if($("#playlist-loaded").length == 0) {
+	$("#main-library-window").html("<div id='playlist-loaded'></div>");
+	calibrateMain();
+}
+
+/* Set the main div to load the playlist */
+$("#playlist-loaded").html("<%= escape_javascript(render 'library/playlist_show', :songs => @playlist_songs) %>");

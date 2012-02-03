@@ -8,6 +8,10 @@ class MusicController < ApplicationController
 		@playlist = Playlist.find(params[:library_id])
 	end
 	
+	def show
+
+	end
+
 	def create
 		@new_song = Song.new(:title => params[:song][:title], :album => params[:song][:album], :artist => params[:song][:artist], :url => params[:song][:url], :user_id => current_user.id, :playlist_id => @playlist.id)
 		
@@ -18,6 +22,10 @@ class MusicController < ApplicationController
 			render 	:text => "alert('Failed to Save')",
 					:content_type => "text/javascript"
 		end
+	end
+
+	def edit
+
 	end
 	
 	private

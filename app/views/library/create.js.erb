@@ -1,1 +1,11 @@
-appendPlaylists(<%= @new_playlist.id %>, "<%= player_path(@new_playlist) %>", "<%= @new_playlist.name %>");
+<%= render 'shared/change_playlist' %>
+
+/* Append the playlist list with the new playlist */
+$("#user-playlists").append("<li id='playlist-<%= @new_playlist.id %>' class='playlist-item'><%= escape_javascript(link_to @new_playlist.name, library_path(@new_playlist), :remote => true) %></li>");
+
+/* Scroll to the bottom of the playlist list */
+$("#user-playlist-wrapper").scrollTop($("#user-playlist-wrapper").outerHeight());
+
+/* Toggle Selected */
+clearSelected();
+$("#playlist-" + <%= @playlist.id %>).toggleClass("selected");	
