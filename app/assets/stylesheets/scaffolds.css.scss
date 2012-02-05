@@ -39,26 +39,40 @@ label {
 	font-weight: bold;
 	margin: 15px 0px;
 }
-
 input[type="text"], input[type="password"] {
 	padding: 10px;
 	font-size: 24px;
 	border: 1px solid #CCC;
 	background: #EEEEEE;
+	width: 100%;
+	box-sizing: border-box;
 }
-
 input[type="submit"] {
 	margin: 15px 0px;
 	padding: 5px 10px;
 }
-
 .error {
 	padding: 10px 5px;
 	background: #F1C4C4;
 	margin: 15px 0px;
 	border: 1px solid #E5A7A7;
 }
-
+.hidden {
+	display: none;
+}
+.collapsable {
+	padding: 25px;
+}
+.collapsable-title {
+	padding: 15px;
+	background: #F5F5F5;
+	font-size: 14px;
+	font-weight: bold;
+	border-bottom: 1px solid #999999;
+}
+.collapsable-title:hover {
+	cursor: pointer;
+}
 table {
 	table-layout: fixed;
 	width: 100%;
@@ -79,13 +93,19 @@ table {
 .full {
 	min-width: 1080px;
 }
+.horizontal-spacing {
+	height: 15px;
+	width: 15px;
+}
 #logo {
 	padding-top: 1px;
 	display: block;
 }
+
 /* 
 	Nav and Header Stylings
 */
+
 header {
 	padding: 5px 10px 5px 5px;
 	background: #F5F5F5;

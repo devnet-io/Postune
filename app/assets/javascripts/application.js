@@ -11,6 +11,7 @@
 //= require player_load
 //= require player_gui
 //= require player
+//= require music
 //= require profile
 //= require library
 //= require soundmanager2-jsmin

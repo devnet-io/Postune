@@ -72,6 +72,12 @@ function previousSong() {
  */
  $(function() {
  	$("#next-song").live("click", function() {
-		
+		nextSong();
+	});
+	$("#previous-song").live("click", function() {
+		previousSong();
+	});
+	$("#stop-song").live("click", function() {
+		stopAll();
 	});
  });

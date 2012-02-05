@@ -1,4 +1,11 @@
-<div class="std-window">
-	<h1>New Song</h1>
+<div class="collapsable-title">Create Song</div>
+<div class="collapsable hidden">
+	<h1>Create Song</h1>
 	<%= render 'playlist_songs/new_form', :url => library_music_index_path, :remote => true %>
 </div>
+<div class="collapsable-title">Find Song</div>
+<div class="collapsable">
+	<h1>Search</h1>
+	<%= render 'music/search_form' %>
+</div>
+

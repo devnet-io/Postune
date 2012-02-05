@@ -26,6 +26,7 @@ class LibraryController < ApplicationController
 		if current_user.playlist.count > 0
 			@playlist = current_user.library.playlist
 			@playlist_first = @playlist.playlist_song.order("#{sort_column} #{sort_direction}")
+			@json = ActiveSupport::JSON.encode(@playlist_first)
 		else
 			@playlist_first = nil
 		end

@@ -22,6 +22,9 @@
 						<li><%= link_to "Logout", logout_path %>/li>
 						<li><%= link_to "Music", player_index_path %></li>
 						<li><%= link_to "Profile", "#" %></li>
+						<% if admin? %>
+						<li><%= link_to "Admin", admin_index_path %></li>
+						<% end %>
 					</ul>
 				</div>
 			<% else %>

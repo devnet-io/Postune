@@ -1,7 +1,7 @@
 <div id="library-nav-wrapper">
 	<div class="left" id="user-playlist-wrapper">
 		<ul>
-			<li class="playlist-item"><%= link_to "Library", library_path(@library.playlist.id), :remote => true  %></li>
+			<li class="playlist-item" id="playlist-<%= @library.playlist.id %>"><%= link_to "Library", library_path(@library.playlist.id), :remote => true  %></li>
 		</ul>
 		<ul id="user-playlists">
 			<li class="title">Playlists</li>
@@ -19,11 +19,14 @@
 
 	<div class="left" id="main-library-window">
 		<div id="playlist-loaded">
-
+			<%= render 'library/playlist_show', :songs => @playlist_first %>
 		</div>
 	</div>
 </div>
 <div class="clear" id="player">
+	<%= link_to image_tag("previous.png"), "javascript:previousSong();" %>
+	<%= link_to image_tag("play.png"), "javascript:void(0);" %>
+	<%= link_to image_tag("next.png"), "javascript:nextSong();" %>
 	<div id="youtube-player"></div>
 </div>
-
+<script>songs = $.parseJSON("<%= escape_javascript(@json).html_safe %>");</script>

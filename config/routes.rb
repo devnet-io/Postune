@@ -37,7 +37,11 @@ Postune::Application.routes.draw do
 	resources :change 
 	
 	resources :library do
-		resources :music
+		resources :music do
+			get 'search', :on => :collection
+		end
 	end
+
+	resources :search
 end
  

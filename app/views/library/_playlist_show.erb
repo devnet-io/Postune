@@ -2,6 +2,8 @@
 	<div class="actions-bar">
 		<div class="right">
 			<%= link_to "Add Song", new_library_music_path(@playlist.id), :class => "button", :remote => true %></a>
+			<span class="horizontal-spacing"></span>
+			<%= link_to "Share Playlist", new_library_music_path(@playlist.id), :class => "button", :remote => true %></a>
 			<%= link_to "Edit Playlist", edit_library_path(@playlist.id), :class => "button", :remote => true %></a>
 			<%= link_to "Delete Playlist", library_music_path(@playlist.id), 
 				:method => :delete, 
@@ -34,5 +36,7 @@
 		<% end %>
 	</tbody>
 </table>
-<a href="#" id="next-song">Next Song</a>
+<a href="#" id="next-song">Next Song</a> | 
+<a href="#" id="previous-song">Previous Song</a> | 
+<a href="#" id="stop-song">Stop</a>
 <%= @sort %> | <%= @dir %>

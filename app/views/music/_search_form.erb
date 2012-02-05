@@ -1,0 +1,15 @@
+<%= form_for search_library_music_index_path(@playlist), 
+	:url => url_for(
+		:action => 'search', 
+		:controller => 'music', 
+		:library_id => @playlist.id), 
+	:method => 'get', 
+	:id => 'song_search', 
+	:remote => true do %>
+	<div class="field">
+		<%= text_field_tag :search, params[:search] %>
+	</div>
+	<div class="action">
+		<%= submit_tag 'Search' %>
+	</div>
+<% end %>	

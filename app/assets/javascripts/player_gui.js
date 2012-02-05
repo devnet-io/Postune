@@ -9,7 +9,7 @@
   * Makes the main div the height of the screen
   */
  function calibrateMain() {
-	$("#playlist-loaded").height($(window).height() - ($("header").outerHeight(true) + $("#actions").outerHeight() + $("#player").height() + 35));
+	$("#main-library-window").height($(window).height() - ($("header").outerHeight(true) + $("#actions").outerHeight() + $("#player").height() + 35));
 	$("#user-playlist-wrapper").height($(window).height() - ($("header").outerHeight(true) + $("#actions").outerHeight() + $("#player").height() + 35));
 }
 /*
