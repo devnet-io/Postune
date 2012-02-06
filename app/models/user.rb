@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
 	belongs_to :group
 	
 	# Every user has playlists and songs
-	has_many :playlist, :dependent => :delete_all
-	has_many :song
-	has_one :library, :dependent => :destroy
+	has_many :playlist, :dependent => :destroy
+	has_many :song, 	:dependent => :destroy
+	has_one :library, 	:dependent => :destroy
 
 	# Email Regex for validation
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
