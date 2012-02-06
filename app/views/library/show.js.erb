@@ -1,11 +1,12 @@
 <%= render 'shared/change_playlist' %>
 
-	alert("<%= escape_javascript(@json).html_safe %>");
-
-
 if(cur.playlist == <%= @playlist.id %> || cur.playlist == null) {
 	$(".pos_" + cur.position).toggleClass("playlist-playing");
 	songs = $.parseJSON("<%= escape_javascript(@json).html_safe %>");
+}
+
+if(cur.playlist != <%= @playlist.id %>) {
+	cur_loaded_playlist = $.parseJSON("<%= escape_javascript(@json).html_safe %>");
 }
 
 if(!<%= @sorted %>) {

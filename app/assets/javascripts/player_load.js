@@ -17,8 +17,14 @@ var cur = 	{
 				"sort": "position",
 				"dir": "asc"
 			};
-
+/*
+ * Songs holds the songs of the playlist that is currently playing
+ */
 var songs = { };
+/* 
+ * Cur_loaded_playlist holds the songs of the playlist that is currently loaded in the window
+ */
+var cur_loaded_playlist = { };
 	
 $(function() {
 	/*

@@ -10,12 +10,13 @@
  */
 function changeSong(id, url, type, playlist, position) {
 	play(type, url, id);
-	storeNowPlaying(position, playlist, url, id, type);
+	storeNowPlaying(id, url, type, playlist, position);
+	songs = cur_loaded_playlist;
 }
 /*
  * Stores information about song in javascript variable
  */
-function storeNowPlaying(position, playlist, url, id, type) {
+function storeNowPlaying(id, url, type, playlist, position) {
 	cur.playlist = playlist;
 	cur.position = position;
 	cur.url = url;
