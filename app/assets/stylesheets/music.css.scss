@@ -1,3 +1,26 @@
-// Place all the styles related to the music controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*
+	Postune (C)
+	CSS
+	V 1.0
+	Ferris Tseng, Joseph Esposito, Jimin Jin
+	Search Results
+*/
+
+.search-result {
+	overflow: hidden;
+	clear: both;
+	padding: 10px 15px;
+	margin: 5px 0px;
+	background: #EFEFEF;
+
+	.result-title {
+		font-weight: bold;
+		padding: 5px;
+	}
+	.result-img {
+		padding: 5px;
+	}
+	#search-result-form {
+		width: 50%;
+	}
+}

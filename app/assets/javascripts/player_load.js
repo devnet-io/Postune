@@ -63,6 +63,13 @@ $(function() {
 		/* Fill out*/
 		event.preventDefault();
 	});
+	/*
+	 * Show new search results form
+	 */
+	$(".show-new-form").live("click", function(event) {
+		$(this).parent().prev().slideToggle();
+		event.preventDefault();
+	});
 	/* 
 	 * Calibrate the window whenever the window is resized
 	 */

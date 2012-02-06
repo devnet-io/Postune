@@ -38,3 +38,4 @@ function changeNowPlaying(div) {
 	$(".playlist-playing").removeClass("playlist-playing");
 	div.toggleClass("playlist-playing");
 }
+

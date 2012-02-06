@@ -4,7 +4,7 @@ class MusicController < ApplicationController
 
 	before_filter :deny_access
 	before_filter :find_playlist, :only => [:new, :edit, :search, :create]
-	before_filter :format_query_string, :query_youtube, :query_soundcloud, :only => [:search]
+	before_filter :format_query_string, :query_youtube, :process_youtube_data, :query_soundcloud, :only => [:search]
 	
 	def new
 		@new_song = Song.new
@@ -30,7 +30,7 @@ class MusicController < ApplicationController
 	end
 	
 	def search
-
+		@new_song = Song.new
 	end
 
 	private
@@ -45,7 +45,21 @@ class MusicController < ApplicationController
 
 		def query_youtube
 			data = open("http://gdata.youtube.com/feeds/api/videos?max-results=10&alt=json&q=#{@query}").read
-			@json_1 = data
+			@json_1 = JSON.parse(data)
+		end
+
+		def process_youtube_data
+			@processed = Array.new
+			@json_1["feed"]["entry"].each do |entry| 
+				@processed.push(
+					{
+						"title" => entry["title"]["$t"],
+						"author" => entry["author"][0]["name"]["$t"],
+						"url" => entry["link"][0]["href"],
+						"artwork" => entry["media$group"]["media$thumbnail"][0]["url"],
+					}
+				)
+			end
 		end
 
 		def query_soundcloud

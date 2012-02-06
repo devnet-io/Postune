@@ -47,9 +47,13 @@ input[type="text"], input[type="password"] {
 	width: 100%;
 	box-sizing: border-box;
 }
-input[type="submit"] {
+input[type="submit"], .medium {
 	margin: 15px 0px;
 	padding: 5px 10px;
+	font-size: 13px;
+}
+input[readonly] {
+	color: #666;
 }
 .error {
 	padding: 10px 5px;
