@@ -24,9 +24,9 @@
 	</div>
 </div>
 <div class="clear" id="player">
-	<%= link_to image_tag("previous.png"), "javascript:previousSong();" %>
-	<%= link_to image_tag("play.png"), "javascript:stopAll(0);" %>
-	<%= link_to image_tag("next.png"), "javascript:nextSong();" %>
+	<%= link_to image_tag("previous.png"), "#", :onclick => "previousSong();" %>
+	<%= link_to image_tag("play.png"), "#", :onclick => "stopAll();" %>
+	<%= link_to image_tag("next.png"), "#", :onclick => "nextSong();" %>
 	<div id="youtube-player"></div>
 </div>
 <script>songs = $.parseJSON("<%= escape_javascript(@json).html_safe %>");</script>
