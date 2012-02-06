@@ -15,12 +15,42 @@
 
 	.result-title {
 		font-weight: bold;
-		padding: 5px;
+		padding: 5px 0px;
 	}
 	.result-img {
-		padding: 5px;
+		text-align: center;
+		border: 5px solid #333333;
+		box-shadow: 0px 0px 5px #666666;
+		width: 90px;
+		height: 90px;
+		overflow: hidden;
+	}
+	.yt-img {
+		margin-left: -15px;
 	}
 	#search-result-form {
 		width: 50%;
+
+		.actions {
+			margin: 30px 0px 0px 0px;
+		}
 	}
+}
+.ui-tabs-nav {
+	li {
+		background: #EFEFEF;
+		display: inline-block;
+	}
+	a {
+		display: block;
+		padding: 15px 25px;
+		color: #000000;
+		font-weight: bold;
+	}
+}
+.ui-state-default.ui-corner-top.ui-state-selected.ui-state-active {
+	background: #6A94D4;
+}
+.ui-tabs-hide {
+	display: none;
 }

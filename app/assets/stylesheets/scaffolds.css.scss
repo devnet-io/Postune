@@ -29,6 +29,12 @@ ul {
 	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(245, 245, 245)), to(rgb(221, 221, 221)));
 	font-weight: bold;
 }
+.button:hover {
+	cursor: pointer;
+}
+.button:active {
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(221, 221, 221)), to(rgb(245, 245, 245)));
+}
 .left {
 	float: left;
 }

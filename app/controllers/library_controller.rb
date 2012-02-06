@@ -66,7 +66,7 @@ class LibraryController < ApplicationController
 		end
 
 		def is_sorted?
-			return sort_column != "position"
+			return sort_column != "position" || sort_direction == "desc"
 		end	
 
 end

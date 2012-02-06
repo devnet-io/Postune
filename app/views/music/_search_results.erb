@@ -1,34 +1,12 @@
-<% @processed.each do |entry| %>
-	<div class="search-result">
-		<div class="left">
-		<div class="result-img"><%= image_tag entry["artwork"], :width => "120px" %></div>
-		<div class="result-title"><%= entry["title"] %></div>
-		</div>
-		<div class="right" id="search-result-form">
-			<%= form_for @new_song, :url => library_music_index_path, :remote => true do |f| %>
-				<div class="hidden">
-					<div class="field">
-						<%= f.label :title %>
-						<%= f.text_field :title, :value => entry["title"] %>
-					</div>
-					<div class="field">
-						<%= f.label :artist %>
-						<%= f.text_field :artist, :value => entry["author"] %>
-					</div>
-					<div class="field">
-						<%= f.label :album %>
-						<%= f.text_field :album %>
-					</div>
-					<div class="field">
-						<%= f.label :url %>
-						<%= f.text_field :url, :value => entry["url"], :readonly => true %>
-					</div>
-				</div>
-				<div class="actions right">
-					<%= f.submit "Add", :class => "button" %>
-					<%= link_to "Edit", "#", :class => "medium button show-new-form" %>
-				</div>
-			<% end %>
-		</div>
+<div id="tabbed-results">
+	<ul>
+		<li><a href="#yt-tab">YouTube</a></li>
+		<li><a href="#sc-tab">Soundcloud</a></li>
+	</ul>
+	<div id="yt-tab">
+		<%= render 'music/search_result_form', :processed => @processed_yt %>
 	</div>
-<% end %>
+	<div id="sc-tab">
+		<%= render 'music/search_result_form', :processed => @processed_sc %>
+	</div>
+</div>

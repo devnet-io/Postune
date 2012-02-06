@@ -65,18 +65,11 @@ class Song < ActiveRecord::Base
 	end
 	
 	# Search Soundcloud to get info using the external id
-	def search_soundcloud(query)
-		soundcloud_client_id = "33f255a6f2a015cd2bf4c80dc37ebcf7"
-		soundcloud_username = self.external_id.split("/")[0]
-		soundcloud_permalink = self.external_id.split("/")[1]
-		data = open("http://api.soundcloud.com/tracks.json?client_id=#{soundcloud_client_id}&q=#{soundcloud_permalink}").read
-		soundcloud_results = JSON.parse(data)
-		soundcloud_results.each do |result|
-			if result["user"]["permalink"] == soundcloud_username && result["permalink"] == soundcloud_permalink
-				@@results = result
-			end
-		end
-		self.external_id = @@results["id"]
+	def search_soundcloud()
+		client_id = "33f255a6f2a015cd2bf4c80dc37ebcf7"
+		data = open("http://api.soundcloud.com/resolve.json?url=#{self.url}&client_id=#{client_id}").read
+		@@results = JSON.parse(data)
+		self.external_id = self.url
 	end
 	
 	# Search Youtube to get info using the external id
@@ -123,7 +116,7 @@ class Song < ActiveRecord::Base
 			if self.service_id == Service.find_by_name("YouTube").id
 				search_youtube(self.url)
 			elsif self.service_id == Service.find_by_name("Soundcloud").id
-				search_soundcloud(self.url)
+				search_soundcloud()
 			end
 			
 			self.artwork 		||= find_artwork		end
