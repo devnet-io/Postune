@@ -5,7 +5,7 @@
 		</ul>
 		<ul id="user-playlists">
 			<li class="title">Playlists</li>
-			<% if !@playlist_first.nil? %>
+			<% if !@playlist_songs.nil? %>
 				<% current_user.playlist.each do |playlist| %>
 					<% if playlist != @library.playlist %>
 					<li id="playlist-<%= playlist.id %>" class="playlist-item">
@@ -19,7 +19,7 @@
 
 	<div class="left" id="main-library-window">
 		<div id="playlist-loaded">
-			<%= render 'library/playlist_show', :songs => @playlist_first %>
+			<%= render 'library/playlist_show', :songs => @playlist_songs %>
 		</div>
 	</div>
 </div>
@@ -29,4 +29,4 @@
 	<%= link_to image_tag("next.png"), "#", :onclick => "nextSong();" %>
 	<div id="youtube-player"></div>
 </div>
-<script>songs = $.parseJSON("<%= escape_javascript(@json).html_safe %>");</script>
+<script>songs, cur_loaded_playlist = $.parseJSON("<%= escape_javascript(@json).html_safe %>");</script>

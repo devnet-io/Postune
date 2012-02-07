@@ -17,11 +17,12 @@
 	min-width: 216px;
 }
 .playlist-item {
-	padding: 15px 10px;
-	border-bottom: solid 1px #DCDCDC;
 	box-shadow: 0px 0px 5px #DCDCDC;
 	text-shadow: 1px 1px 1px #FFF;
 	a {
+		padding: 15px 10px;
+		border-bottom: solid 1px #DCDCDC;
+		display: block;
 		color: #333333;
 	}
 }

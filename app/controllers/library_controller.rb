@@ -2,9 +2,9 @@ class LibraryController < ApplicationController
 
 	helper_method :sort_column, :sort_direction
 	before_filter :deny_access
-	before_filter :find_playlist, :is_user?, :find_library, :only => [:show]
+	before_filter :find_playlist, :is_user?, :check_sorted, :only => [:show, :destroy]
 	before_filter :set_sort_dir, :only => [:show, :index, :create]
-	before_filter :find_library, :only => [:index]
+	before_filter :find_library, :only => [:index, :show, :destroy]
 	
 	def new
 		@new_playlist = Playlist.new
@@ -23,21 +23,22 @@ class LibraryController < ApplicationController
 	
 	def index
 		@title = current_user.name
-		if current_user.playlist.count > 0
-			@playlist = current_user.library.playlist
-			@playlist_first = @playlist.playlist_song.order("#{sort_column} #{sort_direction}")
-			@json = ActiveSupport::JSON.encode(@playlist_first)
-		else
-			@playlist_first = nil
-		end
+		@playlist = current_user.library.playlist
+		get_songs_json_encode
 	end
 
 	def show
-		@playlist_songs = @playlist.playlist_song.order("#{sort_column} #{sort_direction}")
-		@json = ActiveSupport::JSON.encode(@playlist_songs)
-		@sorted = is_sorted?
+		get_songs_json_encode
 	end	
 	
+	def destroy
+		@destroyed = @playlist
+		@playlist.destroy
+		@playlist = @library.playlist
+		get_songs_json_encode
+		render 'destroy.js'
+	end
+
 	private
 	
 		def sort_column
@@ -68,5 +69,14 @@ class LibraryController < ApplicationController
 		def is_sorted?
 			return sort_column != "position" || sort_direction == "desc"
 		end	
+
+		def check_sorted
+			@sorted = is_sorted?
+		end
+
+		def get_songs_json_encode
+			@playlist_songs = @playlist.playlist_song.order("#{sort_column} #{sort_direction}")
+			@json = ActiveSupport::JSON.encode(@playlist_songs)
+		end
 
 end
