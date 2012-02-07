@@ -9,14 +9,15 @@
  * Changes to a song with parameters
  */
 function changeSong(id, url, type, playlist, position) {
-	play(type, url, id);
 	storeNowPlaying(id, url, type, playlist, position);
+	play(type, url, id);
 	songs = cur_loaded_playlist;
 }
 /*
  * Stores information about song in javascript variable
  */
 function storeNowPlaying(id, url, type, playlist, position) {
+	alert(id);
 	cur.playlist = playlist;
 	cur.position = position;
 	cur.url = url;
@@ -27,9 +28,8 @@ function storeNowPlaying(id, url, type, playlist, position) {
  * Plays a song
  */
 function play(type, url, id) {
-	stopAll();
 	if(type == 1) {
-		ytplayer.cueVideoById(id);
+		ytplayer.loadVideoBy(id);
 		ytplayer.playVideo();
 	} else if(type == 2) {
 		scStartSong(url);

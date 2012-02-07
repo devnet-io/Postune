@@ -12,16 +12,16 @@ function scStartSong(url) {
 		url = track.stream_url;		
 		(url.indexOf("secret_token") == -1) ? url = url + '?' : url = url + '&';
 		url = url + 'consumer_key=' + consumerkey;
-		soundManager.createSound({
+		var soundCloud = soundManager.createSound({
 			id: 'track_' + track.id,
 			url: url,
 			autoPlay: true,
 			onfinish: function() {
 				nextSong();
-			}
+			},
 		});	
 	});
-};
+}
 
 function scStopAll() {
 	soundManager.stopAll();

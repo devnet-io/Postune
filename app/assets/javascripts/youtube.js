@@ -1,7 +1,3 @@
-function updateHTML(elmId, value) {
-	document.getElementById(elmId).innerHTML = value;
-}
-
 function onPlayerError(errorCode) {
 	alert("An error occured of type:" + errorCode);
 }

@@ -38,15 +38,15 @@ $(function() {
 	/*
 	 * Start playing a song on click
 	 */
-	$(".playlist-list-song").on("click", function(event) {
+	$(document).on("click", ".playlist-list-song", function(event) {
 		$.get($(this).find(".playlist-song").attr("href"));
 		changeNowPlaying($(this));
 		event.preventDefault();
 	});
-	/*=
+	/*
 	 * Load the user's menu on click
 	 */
-	$(".user-nav").on("click", function() {
+	$(document).on("click", ".user-nav", function() {
 		$("#user-hidden-menu").css("left", $(document).outerWidth() - $("#user-hidden-menu").outerWidth() - 10 + "px");
 		$("#user-hidden-menu").toggle();
 		$(".user-nav").toggleClass("user-nav-open");
@@ -54,7 +54,7 @@ $(function() {
 	/* 
 	 * Reload playlist based on sort parameters
 	 */
-	$(".sortable_column").on("click", function(event) {
+	$(document).on("click", ".sortable_column", function(event) {
 		processSort(GET($(this).attr("href")));
 		playlist_id = link.attr("href").split("player/")[1];
 		$.get($(this).attr("href"), function(playlist) {
@@ -65,14 +65,14 @@ $(function() {
 		});
 		event.preventDefault();
 	});
-	$(".playlist-playing").on("click", function(event) {
+	$(document).on("click", ".playlist-playing", function(event) {
 		/* Fill out*/
 		event.preventDefault();
 	});
 	/*
 	 * Show new search results form
 	 */
-	$(".show-new-form").on("click", function(event) {
+	$(document).on("click", ".show-new-form", function(event) {
 		$(this).parent().prev().slideToggle();
 		event.preventDefault();
 	});
