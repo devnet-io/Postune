@@ -27,6 +27,7 @@ function storeNowPlaying(id, url, type, playlist, position) {
  * Plays a song
  */
 function play(type, url, id) {
+	stopAll();
 	if(type == 1) {
 		ytplayer.loadVideoById(id);
 	} else if(type == 2) {
