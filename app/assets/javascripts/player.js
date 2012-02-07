@@ -17,7 +17,6 @@ function changeSong(id, url, type, playlist, position) {
  * Stores information about song in javascript variable
  */
 function storeNowPlaying(id, url, type, playlist, position) {
-	alert(id);
 	cur.playlist = playlist;
 	cur.position = position;
 	cur.url = url;
@@ -29,8 +28,7 @@ function storeNowPlaying(id, url, type, playlist, position) {
  */
 function play(type, url, id) {
 	if(type == 1) {
-		ytplayer.loadVideoBy(id);
-		ytplayer.playVideo();
+		ytplayer.loadVideoById(id);
 	} else if(type == 2) {
 		scStartSong(url);
 	}	
